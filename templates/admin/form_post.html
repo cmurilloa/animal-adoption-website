@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<a href="/admin/blog" style="color:#093825;font-size:0.9rem">← Volver al blog</a>
+<h1 class="admin-title" style="margin-top:12px">{% if post %}Editar entrada{% else %}Nueva entrada{% endif %}</h1>
+
+<form method="POST" style="max-width:700px">
+  <div class="admin-table-wrap" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">Título *</label>
+      <input name="title" class="input" required value="{{ post.title if post else '' }}"
+             style="width:100%;box-sizing:border-box" />
+    </div>
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">Resumen <span style="font-weight:400">(se muestra en la lista del blog)</span></label>
+      <textarea name="excerpt" class="input" rows="2" style="width:100%;box-sizing:border-box;resize:vertical">{{ post.excerpt if post else '' }}</textarea>
+    </div>
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">Contenido *</label>
+      <textarea name="content" class="input" rows="12" required
+                style="width:100%;box-sizing:border-box;resize:vertical;font-family:inherit">{{ post.content if post else '' }}</textarea>
+    </div>
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">URL de imagen de portada</label>
+      <input name="image" class="input" value="{{ post.image if post else '' }}"
+             placeholder="https://..." style="width:100%;box-sizing:border-box" />
+    </div>
+
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.9rem">
+      <input type="checkbox" name="published" {% if post and post.published %}checked{% endif %} />
+      Publicar (visible en el blog)
+    </label>
+
+    <div style="display:flex;gap:12px">
+      <button type="submit" class="btn-sm btn-sm-green" style="padding:10px 24px;font-size:0.95rem">
+        {% if post %}Guardar cambios{% else %}Crear entrada{% endif %}
+      </button>
+      <a href="/admin/blog" class="btn-sm btn-sm-gray" style="padding:10px 24px;font-size:0.95rem;text-decoration:none">Cancelar</a>
+    </div>
+
+  </div>
+</form>
+{% endblock %}

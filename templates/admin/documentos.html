@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+  <h1 class="admin-title" style="margin:0">Documentos Fiscales</h1>
+  <a href="/admin/documentos-fiscales/nuevo" class="btn-sm btn-sm-green" style="padding:10px 20px;text-decoration:none;font-size:0.9rem">+ Agregar documento</a>
+</div>
+
+<div class="admin-table-wrap">
+  <h2>Documentos ({{ docs|length }})</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Título</th><th>Descripción</th><th>Enlace</th><th>Fecha</th><th>Acción</th></tr>
+    </thead>
+    <tbody>
+    {% for doc in docs %}
+    <tr>
+      <td>{{ doc.id }}</td>
+      <td><strong>{{ doc.title }}</strong></td>
+      <td style="color:#64748b;font-size:0.85rem">{{ doc.description or '—' }}</td>
+      <td><a href="{{ doc.file_url }}" target="_blank" style="color:#093825;font-size:0.85rem">Ver PDF</a></td>
+      <td>{{ doc.created_at.strftime('%d/%m/%Y') }}</td>
+      <td>
+        <form method="POST" action="/admin/documentos-fiscales/{{ doc.id }}/eliminar" style="margin:0"
+              onsubmit="return confirm('¿Eliminar este documento?')">
+          <button type="submit" class="btn-sm btn-sm-red">Eliminar</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6" style="color:#94a3b8;text-align:center;padding:20px">Sin documentos aún</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

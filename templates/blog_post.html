@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ post.title }} - Animal Libre</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/static/images/logo.png" alt="Logo Animal Libre" class="nav-logo-img" /></a>
+      <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/adopciones">Adopciones</a></li>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+        <li><a href="/blog" class="active">Blog</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/documentos-fiscales">Documentos Fiscales</a></li>
+        <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+        <i data-lucide="menu" class="icon-lg"></i>
+      </button>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/">Inicio</a>
+      <a href="/adopciones">Adopciones</a>
+      <a href="/nosotros">Nosotros</a>
+      <a href="/como-ayudar">Cómo Ayudar</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/contacto">Contacto</a>
+      <a href="/documentos-fiscales">Documentos Fiscales</a>
+      <a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header page-header-blue">
+      <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.created_at.strftime('%d de %B de %Y') }}</p>
+      </div>
+    </section>
+
+    <section class="section bg-white">
+      <div class="container-sm">
+        <a href="/blog" style="display:inline-flex;align-items:center;gap:6px;color:#093825;font-size:0.9rem;margin-bottom:32px;text-decoration:none">
+          ← Volver al blog
+        </a>
+
+        {% if post.image %}
+        <img src="{{ post.image }}" alt="{{ post.title }}"
+             style="width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-bottom:32px"
+             onerror="this.style.display='none'" />
+        {% endif %}
+
+        <div style="color:#1e293b;font-size:1.05rem;line-height:1.85;white-space:pre-wrap">
+          {{ post.content }}
+        </div>
+
+        <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center">
+          <a href="/blog" class="btn btn-outline-blue">← Todas las entradas</a>
+          <a href="/adopciones" class="btn btn-primary">Ver mascotas en adopción</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;text-align:center">
+        © 2025 Fundación Animal Libre · Calle 7 # 34Aeste - 82, Santa Elena, Antioquia
+      </p>
+    </div>
+  </footer>
+
+</div>
+<script src="/static/js/main.js"></script>
+</body>
+</html>

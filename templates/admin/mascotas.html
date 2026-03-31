@@ -1,0 +1,71 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+  <h1 class="admin-title" style="margin:0">Mascotas</h1>
+  <a href="/admin/mascotas/nueva" class="btn-sm btn-sm-green" style="padding:10px 20px;text-decoration:none;font-size:0.9rem">
+    + Agregar mascota
+  </a>
+</div>
+
+<div class="admin-table-wrap">
+  <h2>Listado de mascotas ({{ pets|length }})</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Edad</th>
+        <th>Estado</th>
+        <th>Nuevo</th>
+        <th>Ingreso</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for pet in pets %}
+    <tr>
+      <td>{{ pet.id }}</td>
+      <td>
+        {% if pet.image %}
+        <img src="{{ pet.image }}" alt="{{ pet.name }}"
+             style="width:48px;height:48px;object-fit:cover;border-radius:6px;"
+             onerror="this.src='https://placehold.co/48x48/f0f7f3/093825?text=🐾'" />
+        {% else %}
+        <span style="font-size:1.5rem">🐾</span>
+        {% endif %}
+      </td>
+      <td><strong>{{ pet.name }}</strong></td>
+      <td>{{ pet.breed }}</td>
+      <td>{{ pet.edad_label }}</td>
+      <td>
+        {% if pet.adoptado %}
+          <span class="badge badge-green">Adoptado</span>
+        {% else %}
+          <span class="badge badge-yellow">Disponible</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if pet.nuevo %}<span class="badge badge-blue">Sí</span>
+        {% else %}<span class="badge badge-gray">No</span>{% endif %}
+      </td>
+      <td>{{ pet.created_at.strftime('%d/%m/%Y') }}</td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap">
+        <a href="/admin/mascotas/{{ pet.id }}/editar" class="btn-sm btn-sm-gray">Editar</a>
+        <form method="POST" action="/admin/mascotas/{{ pet.id }}/toggle-adoptado" style="margin:0">
+          {% if pet.adoptado %}
+            <button class="btn-sm btn-sm-gray" type="submit">Disponible</button>
+          {% else %}
+            <button class="btn-sm btn-sm-green" type="submit">Adoptado</button>
+          {% endif %}
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="9" style="color:#94a3b8;text-align:center;padding:20px">Sin mascotas registradas</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

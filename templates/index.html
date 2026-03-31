@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animal Libre - Adopta, no compres</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/static/images/logo.png" alt="Logo Animal Libre" class="nav-logo-img" />
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/adopciones">Adopciones</a></li>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/documentos-fiscales">Documentos Fiscales</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
+      </ul>
+
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+        <i data-lucide="menu" class="icon-lg"></i>
+      </button>
+    </nav>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/" class="active">Inicio</a>
+      <a href="/adopciones">Adopciones</a>
+      <a href="/nosotros">Nosotros</a>
+      <a href="/como-ayudar">Cómo Ayudar</a>
+      <a href="/contacto">Contacto</a>
+      <a href="/documentos-fiscales">Documentos Fiscales</a>
+      <a href="/blog">Blog</a>
+      <a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-fullwidth">
+      <img
+        class="hero-bg-img"
+        src="https://images.unsplash.com/photo-1753685725777-0d1bf5796b3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBodWdnaW5nJTIwZG9nfGVufDF8fHx8MTc3MzM0MDI1Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt=""
+        onerror="this.src='https://placehold.co/1280x580/093825/0f5438?text=Animal+Libre'"
+      />
+      <div class="hero-fw-overlay"></div>
+      <div class="hero-fw-inner">
+        <h1>
+          Encuentra tu
+          <span>Compañero Perfecto</span>
+        </h1>
+        <p>Miles de animales esperan un hogar lleno de amor. Adopta, no compres, y cambia dos vidas para siempre.</p>
+        <div class="hero-cta">
+          <a href="/adopciones" class="btn btn-green btn-lg">Ver Animales</a>
+          <a href="/como-ayudar" class="btn btn-white-outline btn-lg">Cómo Ayudar</a>
+        </div>
+        <div class="hero-fw-stats">
+          <div>
+            <div class="hero-fw-stat-value gold">500+</div>
+            <div class="hero-fw-stat-label">Animales Adoptados</div>
+          </div>
+          <div>
+            <div class="hero-fw-stat-value white">50+</div>
+            <div class="hero-fw-stat-label">Voluntarios Activos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAROUSEL - Recién Llegados -->
+    <section class="carousel-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title text-blue-800">Recién Llegados</h2>
+          <p class="section-subtitle">Estos perritos acaban de llegar y buscan un hogar</p>
+        </div>
+
+        <div class="carousel-wrap">
+          <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Anterior">
+            <i data-lucide="chevron-left" class="icon-lg"></i>
+          </button>
+
+          <div class="carousel-viewport">
+          <div class="carousel-track" id="carouselTrack">
+          </div>
+          </div>
+
+          <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Siguiente">
+            <i data-lucide="chevron-right" class="icon-lg"></i>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+
+        <div class="text-center mt-3">
+          <a href="/adopciones" class="btn btn-outline-blue btn-lg">Ver Todos los Animales</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section class="donation-section">
+      <div class="container">
+        <div class="text-center mb-3">
+          <h2>Tu Donación Salva Vidas</h2>
+          <p>Cada peso cuenta para alimentar, cuidar y dar esperanza a los animales que rescatamos.</p>
+        </div>
+
+        <div class="donation-cta-icons">
+          <div class="donation-cta-item">
+            <i data-lucide="utensils" class="icon-xl"></i>
+            <span>Alimentación diaria</span>
+          </div>
+          <div class="donation-cta-item">
+            <i data-lucide="syringe" class="icon-xl"></i>
+            <span>Vacunas y salud</span>
+          </div>
+          <div class="donation-cta-item">
+            <i data-lucide="scissors" class="icon-xl"></i>
+            <span>Esterilización</span>
+          </div>
+          <div class="donation-cta-item">
+            <i data-lucide="stethoscope" class="icon-xl"></i>
+            <span>Atención veterinaria</span>
+          </div>
+        </div>
+
+        <div class="text-center mt-3">
+          <a href="/como-ayudar" class="btn btn-green btn-lg">
+            <i data-lucide="heart" class="icon-md"></i>
+            Quiero Donar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSORS / PADRINOS -->
+    <section class="section bg-gray">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title text-blue-800">Programa de Padrinos</h2>
+          <p class="section-subtitle">Ayuda mensualmente a animales que necesitan cuidados especiales mientras esperan su hogar</p>
+        </div>
+
+        <div class="grid-3 mb-3">
+
+          <div class="card">
+            <div class="card-img-wrap">
+              <img class="card-img" src="https://images.unsplash.com/photo-1769256130388-9fb59d103671?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGF5ZnVsJTIwY2F0JTIwcmVzY3VlfGVufDF8fHx8MTc3MzM0NTk5MXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Luna" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=Luna'" />
+              <div class="sponsor-card-overlay">
+                <h3>Luna</h3>
+                <p>Gato</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="sponsor-meta">
+                <div class="sponsor-donors">
+                  <i data-lucide="heart" class="icon-sm icon-heart-filled"></i>
+                  <span>12 padrinos</span>
+                </div>
+                <span class="badge badge-blue-light">Tratamiento crónico</span>
+              </div>
+              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino (€10/mes)</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-img-wrap">
+              <img class="card-img" src="https://images.unsplash.com/photo-1706745262357-5ecaa3154433?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXRlJTIwcHVwcHklMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzMyNTc1MDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Rocky" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=Rocky'" />
+              <div class="sponsor-card-overlay">
+                <h3>Rocky</h3>
+                <p>Perro</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="sponsor-meta">
+                <div class="sponsor-donors">
+                  <i data-lucide="heart" class="icon-sm icon-heart-filled"></i>
+                  <span>8 padrinos</span>
+                </div>
+                <span class="badge badge-blue-light">Cuidados especiales</span>
+              </div>
+              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino (€10/mes)</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-img-wrap">
+              <img class="card-img" src="https://images.unsplash.com/photo-1651212508936-dfb6f6ea3d81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb2xkZW4lMjByZXRyaWV2ZXIlMjBoYXBweXxlbnwxfHx8fDE3NzMyOTk5OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Buddy" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=Buddy'" />
+              <div class="sponsor-card-overlay">
+                <h3>Buddy</h3>
+                <p>Perro</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="sponsor-meta">
+                <div class="sponsor-donors">
+                  <i data-lucide="heart" class="icon-sm icon-heart-filled"></i>
+                  <span>15 padrinos</span>
+                </div>
+                <span class="badge badge-blue-light">Alimentación especial</span>
+              </div>
+              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino (€10/mes)</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="godparent-box">
+          <div>
+          <h3>¿Qué incluye ser padrino?</h3>
+          <ul class="godparent-list">
+            <li class="godparent-item">
+              <i data-lucide="heart" class="godparent-icon icon-md"></i>
+              <span>Apoyo mensual para alimentación y cuidados especiales del animal</span>
+            </li>
+            <li class="godparent-item">
+              <i data-lucide="heart" class="godparent-icon icon-md"></i>
+              <span>Actualizaciones mensuales sobre la salud y progreso de tu ahijado</span>
+            </li>
+            <li class="godparent-item">
+              <i data-lucide="heart" class="godparent-icon icon-md"></i>
+              <span>Posibilidad de visitar a tu ahijado cuando quieras</span>
+            </li>
+            <li class="godparent-item">
+              <i data-lucide="heart" class="godparent-icon icon-md"></i>
+              <span>Certificado digital de padrino</span>
+            </li>
+          </ul>
+          </div>
+          <div class="text-center mt-1-5">
+            <a href="/como-ayudar" class="btn btn-green btn-lg">Quiero Ser Padrino</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section bg-white">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title text-blue-800">Nuestros Valores</h2>
+          <p class="section-subtitle">Lo que nos impulsa cada día</p>
+        </div>
+
+        <div class="grid-4">
+          <div class="value-card">
+            <div class="value-icon"><i data-lucide="heart" class="icon-lg"></i></div>
+            <h3>Amor y Cuidado</h3>
+            <p>Cada animal recibe atención veterinaria y amor incondicional mientras espera su hogar.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i data-lucide="shield" class="icon-lg"></i></div>
+            <h3>Adopción Responsable</h3>
+            <p>Proceso de adopción cuidadoso para asegurar el mejor match entre familia y mascota.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i data-lucide="users" class="icon-lg"></i></div>
+            <h3>Comunidad</h3>
+            <p>Construimos una red de apoyo entre adoptantes, voluntarios y amantes de los animales.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i data-lucide="sparkles" class="icon-lg"></i></div>
+            <h3>Segunda Oportunidad</h3>
+            <p>Damos una nueva vida a animales abandonados o rescatados de situaciones difíciles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2>¿Listo para Cambiar una Vida?</h2>
+      <p>Cada adopción es un acto de amor. Cada donación es un acto de esperanza. Juntos podemos hacer la diferencia.</p>
+      <div class="cta-buttons">
+        <a href="/adopciones" class="btn btn-secondary btn-lg">Adoptar Ahora</a>
+        <a href="/como-ayudar" class="btn btn-green btn-lg btn-border-white">Hacer Donación</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="/static/images/logo.png" alt="Logo Animal Libre" class="footer-logo-img" />
+          </div>
+          <p class="footer-desc">Dedicados a rescatar, rehabilitar y encontrar hogares amorosos para animales de compañía abandonados.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Enlaces Rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/adopciones">Adopciones</a></li>
+            <li><a href="/nosotros">Nosotros</a></li>
+            <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/documentos-fiscales">Documentos Fiscales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contacto</h3>
+          <ul class="footer-contact">
+            <li>animalibremedellin@gmail.com</li>
+            <li>+1 (631) 764-7313</li>
+            <li>Síguenos en redes sociales</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Fundación Animal Libre. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="/static/js/main.js"></script>
+<script>
+  fetch('/api/pets')
+    .then(res => res.json())
+    .then(data => {
+      const nuevos = data.filter(p => p.nuevo && !p.adoptado);
+      const track = document.getElementById('carouselTrack');
+
+      track.innerHTML = nuevos.map(pet => `
+        <div class="carousel-slide">
+          <div class="card">
+            <div class="card-img-wrap">
+              <img class="card-img" src="${pet.image}" alt="${pet.name}" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=${pet.name}'" />
+              <span class="badge badge-green card-badge-tr">¡Nuevo!</span>
+            </div>
+            <div class="card-header">
+              <div class="card-title">${pet.name}</div>
+              <div class="card-desc">${pet.edad_label}</div>
+            </div>
+            <div class="card-body">
+              <p class="pet-desc">${pet.descripcion}</p>
+              <a href="/adopciones" class="btn btn-primary btn-full">Conocer Más</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      initCarousel();
+    });
+</script>
+</body>
+</html>

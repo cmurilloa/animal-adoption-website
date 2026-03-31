@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+  <h1 class="admin-title" style="margin:0">Blog</h1>
+  <a href="/admin/blog/nuevo" class="btn-sm btn-sm-green" style="padding:10px 20px;text-decoration:none;font-size:0.9rem">+ Nueva entrada</a>
+</div>
+
+<div class="admin-table-wrap">
+  <h2>Entradas ({{ posts|length }})</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Título</th><th>Estado</th><th>Fecha</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+    <tr>
+      <td>{{ post.id }}</td>
+      <td><strong>{{ post.title }}</strong><br><span style="font-size:0.78rem;color:#94a3b8">/blog/{{ post.slug }}</span></td>
+      <td>{% if post.published %}<span class="badge badge-green">Publicado</span>{% else %}<span class="badge badge-gray">Borrador</span>{% endif %}</td>
+      <td>{{ post.created_at.strftime('%d/%m/%Y') }}</td>
+      <td style="display:flex;gap:6px">
+        <a href="/admin/blog/{{ post.id }}/editar" class="btn-sm btn-sm-gray">Editar</a>
+        <a href="/blog/{{ post.slug }}" target="_blank" class="btn-sm btn-sm-gray">Ver</a>
+        <form method="POST" action="/admin/blog/{{ post.id }}/eliminar" style="margin:0"
+              onsubmit="return confirm('¿Eliminar esta entrada?')">
+          <button type="submit" class="btn-sm btn-sm-red">Eliminar</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5" style="color:#94a3b8;text-align:center;padding:20px">Sin entradas aún</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
