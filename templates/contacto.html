@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - Animal Libre</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/static/images/logo.png" alt="Logo Animal Libre" class="nav-logo-img" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/adopciones">Adopciones</a></li>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+        <li><a href="/contacto" class="active">Contacto</a></li>
+        <li><a href="/como-ayudar" class="btn-donate">Donar</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+        <i data-lucide="menu" class="icon-lg"></i>
+      </button>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/">Inicio</a>
+      <a href="/adopciones">Adopciones</a>
+      <a href="/nosotros">Nosotros</a>
+      <a href="/como-ayudar">Cómo Ayudar</a>
+      <a href="/contacto" class="active">Contacto</a>
+      <a href="/como-ayudar" class="btn-donate">Donar</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header page-header-blue">
+      <div class="container">
+        <h1>Contacto</h1>
+        <p>¿Tienes preguntas? Estamos aquí para ayudarte. Contáctanos y te responderemos lo antes posible.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT INFO + FORM -->
+    <section class="section bg-white">
+      <div class="container">
+
+        <!-- Info Cards -->
+        <div class="contact-info-grid">
+          <div class="contact-info-card">
+            <div class="contact-icon-wrap">
+              <i data-lucide="mail" class="icon-lg"></i>
+            </div>
+            <h3>Email</h3>
+            <a href="mailto:info@animallibre.com">info@animallibre.com</a>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-icon-wrap">
+              <i data-lucide="phone" class="icon-lg"></i>
+            </div>
+            <h3>Teléfono</h3>
+            <a href="tel:+34XXXXXXXXX">+34 XXX XXX XXX</a>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-icon-wrap">
+              <i data-lucide="map-pin" class="icon-lg"></i>
+            </div>
+            <h3>Dirección</h3>
+            <a href="#">Calle Ejemplo 123, Ciudad, CP 12345</a>
+          </div>
+        </div>
+
+        <!-- Form + Side Info -->
+        <div class="contact-layout">
+
+          <!-- Contact Form -->
+          <div class="contact-form-card">
+            <h2>Envíanos un Mensaje</h2>
+            <p>Completa el formulario y nos pondremos en contacto contigo pronto</p>
+            <form id="contactForm" onsubmit="submitForm(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="label" for="firstName">Nombre</label>
+                  <input class="input" id="firstName" type="text" placeholder="Tu nombre" required />
+                </div>
+                <div class="form-group">
+                  <label class="label" for="lastName">Apellido</label>
+                  <input class="input" id="lastName" type="text" placeholder="Tu apellido" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="label" for="email">Email</label>
+                <input class="input" id="email" type="email" placeholder="tu@email.com" required />
+              </div>
+              <div class="form-group">
+                <label class="label" for="phone">Teléfono (opcional)</label>
+                <input class="input" id="phone" type="tel" placeholder="+34 XXX XXX XXX" />
+              </div>
+              <div class="form-group">
+                <label class="label" for="subject">Asunto</label>
+                <input class="input" id="subject" type="text" placeholder="¿Sobre qué quieres hablar?" required />
+              </div>
+              <div class="form-group">
+                <label class="label" for="message">Mensaje</label>
+                <textarea class="input" id="message" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-orange-gradient btn-full">
+                <i data-lucide="send" class="icon-xs"></i>
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+
+          <!-- Side Info -->
+          <div>
+            <div class="hours-card">
+              <h3>Horario de Visitas</h3>
+              <div class="hours-row">
+                <span>Lunes - Viernes</span>
+                <span>9:00 - 18:00</span>
+              </div>
+              <div class="hours-row">
+                <span>Sábados</span>
+                <span>10:00 - 14:00</span>
+              </div>
+              <div class="hours-row">
+                <span>Domingos y Festivos</span>
+                <span>Cerrado</span>
+              </div>
+              <p class="hours-note">Por favor, llama antes de tu visita para asegurarte de que podamos atenderte adecuadamente.</p>
+            </div>
+
+            <div class="social-card">
+              <h3>Síguenos en Redes Sociales</h3>
+              <p>Mantente al día con nuestras historias de adopción y eventos</p>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/fundacionanimalibre/" target="_blank" class="social-icon facebook" aria-label="Facebook">
+                  <i data-lucide="facebook" class="icon-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/animalibrecom/" target="_blank" class="social-icon instagram" aria-label="Instagram">
+                  <i data-lucide="instagram" class="icon-lg"></i>
+                </a>
+                <a href="https://www.tiktok.com/@animalibrefundacion" target="_blank" class="social-icon twitter" aria-label="Twitter">
+                  <i data-lucide="twitter" class="icon-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="section bg-gray">
+      <div class="container-sm">
+        <h2 class="section-title text-center mb-3">Preguntas Frecuentes</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>¿Cuál es el proceso de adopción?</h3>
+            <p>El proceso incluye completar una solicitud, una entrevista, posible visita al hogar, y firma del contrato de adopción. Todo está diseñado para asegurar el mejor match.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Puedo visitar el refugio?</h3>
+            <p>¡Sí! Puedes visitarnos de lunes a viernes de 9:00 a 18:00 y sábados de 10:00 a 14:00. Te recomendamos llamar antes para asegurar disponibilidad.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Aceptan voluntarios sin experiencia?</h3>
+            <p>¡Absolutamente! Proporcionamos capacitación completa a todos nuestros voluntarios. Lo más importante es tu amor por los animales y compromiso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="section bg-white">
+      <div class="container">
+        <h2 class="section-title text-center mb-2">Encuéntranos</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31729.484888366733!2d-75.6091692!3d6.2392506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sco!4v1772142961700!5m2!1ses!2sco"
+          width="100%" height="450" class="map-iframe"
+          loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="/static/images/logo.png" alt="Logo Animal Libre" class="footer-logo-img" />
+          </div>
+          <p class="footer-desc">Dedicados a rescatar, rehabilitar y encontrar hogares amorosos para animales de compañía abandonados.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Enlaces Rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/adopciones">Adopciones</a></li>
+            <li><a href="/nosotros">Nosotros</a></li>
+            <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contacto</h3>
+          <ul class="footer-contact">
+            <li>info@animallibre.com</li>
+            <li>+34 XXX XXX XXX</li>
+            <li>Síguenos en redes sociales</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Fundación Animal Libre. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="/static/js/main.js"></script>
+<script>
+  function submitForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('firstName').value;
+    alert(`¡Gracias, ${name}! Hemos recibido tu mensaje y te contactaremos pronto.`);
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1 class="admin-title">Mensajes de Contacto</h1>
+
+<div class="admin-table-wrap">
+  <h2>Todos los mensajes ({{ messages|length }})</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Asunto</th>
+        <th>Mensaje</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for m in messages %}
+    <tr>
+      <td>{{ m.id }}</td>
+      <td>{{ m.first_name }} {{ m.last_name }}</td>
+      <td>{{ m.email }}</td>
+      <td>{{ m.phone or '—' }}</td>
+      <td>{{ m.subject or '—' }}</td>
+      <td style="max-width:300px">
+        <span title="{{ m.message }}">
+          {{ m.message[:100] }}{% if m.message|length > 100 %}…{% endif %}
+        </span>
+      </td>
+      <td>{{ m.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7" style="color:#94a3b8;text-align:center;padding:20px">Sin mensajes aún</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

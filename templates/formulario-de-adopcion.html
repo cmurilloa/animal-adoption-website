@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Adopción</title>
+    <link rel="icon" type="image/png" href="/static/images/logo.png" />
+    <link rel="stylesheet" href="/static/css/styles.css?v=2" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- HEADER -->
+        <header class="site-header">
+            <nav class="nav-inner">
+                <a href="/" class="nav-logo">
+                    <img src="/static/images/logo.png" alt="Logo Animal Libre" class="nav-logo-img" />
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/adopciones">Adopciones</a></li>
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+                    <li><a href="/contacto" class="active">Contacto</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+                    <i data-lucide="menu" class="icon-lg"></i>
+                </button>
+            </nav>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="/">Inicio</a>
+                <a href="/adopciones">Adopciones</a>
+                <a href="/nosotros">Nosotros</a>
+                <a href="/como-ayudar">Cómo Ayudar</a>
+                <a href="/contacto" class="active">Contacto</a>
+      <a href="/blog">Blog</a>
+      <a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a>
+            </div>
+        </header>
+
+        <main>
+
+            <!-- Form -->
+            <div>
+                <div class="hero form-hero">
+                    <div class="form-img-glow"></div>
+                    <img src="/static/images/logo.png" alt="Logo Animal Libre" class="form-hero-logo">
+                    <div>
+                        <h1>Formulario de Adopción</h1>
+                        <p>Completa el formulario para que podamos conocerte mejor y encontrar el hogar ideal para una
+                            mascota.</p>
+                    </div>
+                </div>
+
+                <div class="form-card">
+
+                    <!--
+                    ORIGINAL (antes de refactor):
+
+                    <h2>Importante</h2>
+                    <p>
+                    Las preguntas realizadas en este formulario tienen como objeto principal proporcionar la información
+                    necesaria sobre el posible adoptante y así permitirnos decidir si el animal de compañía que se desea
+                    adoptar es el apropiado para su estilo de vida. Los perros, gatos u otras especies que se encuentran
+                    en adopción han sido víctimas de maltrato, abuso, explotación y abandono en el transcurso de sus
+                    cortas vidas, y es nuestro deber encontrarles el hogar que más se ajuste a sus necesidades y que les
+                    brinde el amor, los cuidados y la estabilidad que necesitan para toda la <br><br>
+
+                    Antes de querer adoptar debes evaluar si tienes tiempo, paciencia, amor y dedicación para tu nueva
+                    mascota; la raza que principalmente rescata la fundación son bulldog y para esto debes analizar si
+                    tienes los recursos económicos para su sostenimiento. También debes tener en cuenta que nuestros
+                    perros, gatos u otras especies son tratados actualmente únicamente en la veterinaria <strong>CLINICA DE
+                    ESPECIALISTAS VITAL</strong>, donde están los médicos y especialistas en los cuales confiamos en su criterio
+                    médico y experiencia para tratar nuestros rescates, es en esta misma es donde se hacen las cirugías
+                    antes de entregar mascotas en adopció<br> <br>
+
+                    Se solicita la mayor honestidad posible con el diligenciamiento del formulario. Recuerde responder
+                    TODAS las preguntas, tenga en cuenta que usted y su familia posiblemente serán el nuevo hogar de
+                    este animal. <br><br>
+
+                    Por favor, sírvase de leer con mucha atención los siguientes puntos para evitar malos entendidos.
+                    <br><br>
+
+                    <b>PROCESO A SEGUIR:</b><br>
+                    - Se debe concretar una visita domiciliaria o videollamada para conocer el animal de compañía (solo
+                    horarios acordados con los directores de la fundación). <br>
+                    - Se debe enviar el formulario de adopción completo, los formularios incompletos serán descartados
+                    inmediatamente sin excepción alguna. <br>
+                    - En caso de consolidar la adopción (luego del diligenciamiento del formulario y de la visita), se
+                    debe aceptar, firmar y anexar fotocopia de la cédula de ciudadanía en el Contrato de Adopción
+                    encontrado en las últimas hojas de este documento. <br>
+                    - Para el día de la entrega del animal de compañía, el adoptante debe demostrar que tiene los
+                    implementos requeridos para albergar al animal en su casa (recipientes para comida, arnés, bozal (en
+                    caso de ser necesario), collar con placa de identificación, alimento indicado anteriormente por la
+                    fundación y si tiene algún tratamiento médico debe de tener sus medicamentos ya en casa. <br><br>
+                    <br>
+                    <b>PARA TENER EN CUENTA</b><br><br>
+
+                    <b>Antes de la adopción:</b><br>
+                    - Este formato no obliga a ninguna de las dos partes a adoptar o dar en adopción a un animal de
+                    compañía. Solo es un paso en el proceso de adopción. <br>
+                    - La información que aquí se suministra será corroborada antes de continuar con el proceso. <br>
+                    - El posible adoptante debe ser mayor de edad, responsable, amar los animales y contar con los
+                    recursos económicos para albergar y brindarle bienestar al animal de compañía. <br>
+                    - Todos y cada uno de los miembros de la familia, sin excepción, deben estar de acuerdo en la
+                    adopción, si este no es el caso, tenga la amabilidad de abstenerse en llenar el formulario. <br>
+                    - Antes de proceder a llenar este formulario debe estar consciente y haber previsto todo lo que
+                    implica tener un animal de compañía usted debe contar con el espacio adecuado, con tiempo,
+                    paciencia, dinero y el amor para mantenerlo con una buena calidad de vida. <br>
+                    - Si su elección es por un animal de compañía cachorro, deberá ser consciente de las necesidades que
+                    requiere un cachorro, así mismo asumir lo que implica tenerlo en casa, es decir, será similar a
+                    tener un bebé en casa: un bebé que requiere acompañamiento, normas de convivencia y socialización,
+                    juguetes interactivos y posiblemente algunas adecuaciones en el hogar, pues está en etapa de
+                    exploración del mundo que le rodea y tal vez es posible que haga algunos daños y destrozos en medio
+                    de su exploración del entorno mientras aprende. <br>
+                    - Si el animal de compañía ya se encuentra esterilizado para el momento de la adopción, la posible
+                    familia adoptante debe asumir el costo de la esterilización, vacunas y demás gastos médicos, este
+                    costo será abonado directamente a la cuenta la <b>CLINICA DE ESPECIALISTA VITAL</b>, pues allí es donde se
+                    realizan dichos procedimientos y es nuestra forma de poder seguir patrocinando la esterilización y
+                    bienestar de nuestros animales. <br>
+                    - Si el animal de compañía no se encuentra esterilizado para el momento de la posible adopción, la
+                    posible familia adoptante debe asumir el costo de la esterilización, vacunas y demás gastos médicos,
+                    ya que ninguno de nuestros animales se entrega sin dicho procedimiento. <br>
+                    - No se entrega ningún animal de compañía a ciudades, sectores o barrios en donde el índice de
+                    abandono, maltrato y abuso es alto. <br><br>
+
+                    <b>Después de la adopción:</b><br>
+                    - En caso de que la adopción del animal de compañía sea aprobada, y se pierda o fallezca ya sea de
+                    forma natural o accidental, es su deber avisar de inmediato a la Fundación. <br>
+                    - En caso de que el animal de compañía adoptado no pueda permanecer con la familia a quien fue
+                    entregado, es <strong>OBLIGACIÓN DE LA FAMILIA</strong> avisarnos <strong>INMEDIATAMENTE</strong> de este suceso, Y <strong>DEVOLVERLO CON
+                    NOSOTROS</strong>, en ningún caso se aceptará que la persona responsable lo regale, ceda la custodia o lo
+                    abandone en la calle o a su suerte.<br>
+                    - Las visitas mensuales al veterinario son necesarias, se sugiere que el médico sea una persona
+                    consciente, protectora y amante de los animales; de igual modo se recomienda ser siempre el mismo
+                    profesional de manera que conozca desde el inicio al paciente que estará tratando.<br>
+                    - El animal de compañía deberá estar al día con sus vacunas (anuales), vitaminas (cada que el médico
+                    veterinario lo recomiende) y desparasitante (4 meses).<br>
+                    - Cómo prevención de pérdida, el animal adoptado deberá permanecer dentro de casa hasta que conozca
+                    el lugar y se adapte a sus nuevos adoptantes por lo menos durante 20 días, para que juntamente con
+                    la compañía de las personas conozca y comparta los lugares del interior de la casa antes que el
+                    exterior.<br>
+                    - Si el animal adoptado es un gato o gata, se recomienda evitar dejarlo salir a la calle pues puede
+                    contraer fácilmente SIDA O LEUCEMIA felina, entre otras enfermedades, que aunque generalmente no
+                    implican ningún riesgo para perros o humanos, no tienen tratamiento médico para los felinos.<br>
+                    - Si el animal adoptado es un perro o gato, se recomienda jamás dejarlo salir a la calle sin
+                    supervisión de una persona o sin su traílla y placa de identificación a fin de evitar accidentes,
+                    pérdidas y demás.<br>
+                    - Se enviarán fotos regularmente al email: animalibrecolombia@gmail.com o vía Whatsapp, con el fin
+                    de realizar el seguimiento del estado, trato y medio en el que se desenvuelve el animal adoptado;
+                    también así se podrá mantener actualizada nuestra base de datos.
+                    </p>
+                    <h4>”La grandeza de una nación y su progreso moral se puede juzgar de acuerdo a la manera en que trata a sus animales” Ghandi</h4>
+                    -->
+
+                    <h2>Importante</h2>
+
+                    <p>Las preguntas de este formulario tienen como objetivo conocer al posible adoptante y determinar
+                        si el animal que desea adoptar es compatible con su estilo de vida. Los perros, gatos y otras
+                        especies disponibles para adopción han sido víctimas de maltrato, abuso, explotación y abandono,
+                        y es nuestro deber encontrarles el hogar que mejor se ajuste a sus necesidades, que les brinde
+                        amor, cuidado y estabilidad para toda su vida.</p>
+
+                    <p>Antes de adoptar, evalúa si cuentas con tiempo, paciencia, amor y dedicación para tu nueva
+                        mascota. La raza que principalmente rescatamos es el bulldog, por lo que también debes
+                        considerar si tienes los recursos económicos para su sostenimiento. Ten en cuenta que nuestros
+                        animales son atendidos exclusivamente en la <strong>Clínica de Especialistas Vital</strong>,
+                        donde confiamos plenamente en el criterio médico y la experiencia de sus profesionales. Es allí
+                        donde se realizan las cirugías previas a la entrega en adopción.</p>
+
+                    <p>Te pedimos la mayor honestidad al completar este formulario. Responde <strong>todas</strong> las
+                        preguntas, teniendo en cuenta que tú y tu familia posiblemente serán el nuevo hogar de este
+                        animal.</p>
+
+                    <p>Por favor lee con atención los siguientes puntos para evitar malentendidos.</p>
+
+                    <h3>Proceso a seguir</h3>
+                    <ul>
+                        <li>Concretar una visita domiciliaria o videollamada para conocer al animal (solo en horarios
+                            acordados con los directores de la fundación).</li>
+                        <li>Enviar el formulario de adopción completo. Los formularios incompletos serán descartados de
+                            inmediato, sin excepción.</li>
+                        <li>En caso de consolidar la adopción, aceptar, firmar y adjuntar fotocopia de la cédula de
+                            ciudadanía en el Contrato de Adopción incluido al final de este documento.</li>
+                        <li>Para el día de la entrega, el adoptante debe demostrar que cuenta con los implementos
+                            necesarios: recipientes para comida, arnés, bozal (si aplica), collar con placa de
+                            identificación, el alimento indicado por la fundación y, si el animal tiene tratamiento
+                            médico, sus medicamentos ya deben estar en casa.</li>
+                    </ul>
+
+                    <h3>Para tener en cuenta</h3>
+
+                    <h4>Antes de la adopción</h4>
+                    <ul>
+                        <li>Este formulario no obliga a ninguna de las dos partes a adoptar o dar en adopción un animal.
+                            Es solo un paso dentro del proceso.</li>
+                        <li>La información suministrada será verificada antes de continuar con el proceso.</li>
+                        <li>El posible adoptante debe ser mayor de edad, responsable, amar a los animales y contar con
+                            los recursos económicos para brindarles bienestar.</li>
+                        <li>Todos los miembros de la familia, sin excepción, deben estar de acuerdo con la adopción. Si
+                            no es así, te pedimos abstenerte de llenar el formulario.</li>
+                        <li>Antes de completar este formulario debes ser consciente de todo lo que implica tener una
+                            mascota: espacio adecuado, tiempo, paciencia, dinero y amor para mantenerla con buena
+                            calidad de vida.</li>
+                        <li>Si deseas adoptar un cachorro, ten en cuenta que requerirá acompañamiento constante, normas
+                            de convivencia, socialización y juguetes interactivos. Es comparable a tener un bebé en
+                            casa: estará en plena exploración del entorno y es posible que cause algunos destrozos
+                            mientras aprende.</li>
+                        <li>Si el animal ya está esterilizado al momento de la adopción, la familia adoptante deberá
+                            asumir el costo de dicho procedimiento, vacunas y demás gastos médicos. Este pago se realiza
+                            directamente a la <strong>Clínica de Especialistas Vital</strong>, que es donde se realizan
+                            los procedimientos y donde canalizamos el apoyo para seguir patrocinando la esterilización
+                            de nuestros rescates.</li>
+                        <li>Si el animal aún no está esterilizado, la familia adoptante igualmente deberá asumir ese
+                            costo, ya que ninguno de nuestros animales se entrega sin haber sido esterilizado.</li>
+                        <li>No se realizan entregas en ciudades, sectores o barrios con alto índice de abandono,
+                            maltrato o abuso animal.</li>
+                    </ul>
+
+                    <h4>Después de la adopción</h4>
+                    <ul>
+                        <li>Si el animal se pierde o fallece —de forma natural o accidental— es tu deber notificar a la
+                            Fundación de inmediato.</li>
+                        <li>Si el animal adoptado no puede permanecer con la familia, es <strong>obligación de la
+                                familia</strong> avisarnos <strong>de inmediato</strong> y
+                            <strong>devolvérnoslo</strong>. En ningún caso se aceptará que sea regalado, cedido a
+                            terceros o abandonado.
+                        </li>
+                        <li>Se recomiendan visitas mensuales al veterinario. Idealmente, debe ser siempre el mismo
+                            profesional para que conozca al paciente desde el inicio.</li>
+                        <li>El animal debe estar al día con sus vacunas (anuales), vitaminas (según indicación
+                            veterinaria) y desparasitante (cada 4 meses).</li>
+                        <li>Como medida de prevención, el animal debe permanecer dentro de casa al menos durante 20
+                            días, para que conozca el lugar y se adapte a sus nuevos adoptantes antes de explorar el
+                            exterior.</li>
+                        <li>Si el animal adoptado es un gato, se recomienda evitar que salga a la calle, ya que puede
+                            contraer fácilmente VIF (SIDA felino) o leucemia felina, enfermedades sin tratamiento para
+                            los felinos.</li>
+                        <li>Si el animal adoptado es un perro o gato, nunca debe salir a la calle sin supervisión, sin
+                            traílla o sin placa de identificación, para evitar accidentes y pérdidas.</li>
+                        <li>Deberás enviar fotos regularmente al correo <a
+                                href=”mailto:animalibrecolombia@gmail.com”>animalibrecolombia@gmail.com</a> o por
+                            WhatsApp, para que podamos hacer seguimiento al estado y bienestar del animal adoptado.</li>
+                    </ul>
+
+                    <blockquote>”La grandeza de una nación y su progreso moral se puede juzgar de acuerdo a la manera en
+                        que trata a sus animales.” — Gandhi</blockquote>
+
+
+                    <div class="checkbox">
+                        <input type="checkbox" id="acuerdo-checkbox" />
+                        <label for="acuerdo-checkbox">He leído y estoy de acuerdo con todo lo indicado
+                            anteriormente.</label>
+                    </div>
+
+                </div>
+
+                <div id="form-section" class="form-card hidden" style="margin-top: 1.5rem;">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="diligenciamientoDate">Fecha de diligenciamiento</label>
+                                <input class="input" id="diligenciamientoDate" type="date"
+                                    placeholder="Fecha de diligenciamiento" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="mascota">Mascota que desea adoptar</label>
+                                <select class="input" id="mascota" required>
+                                    <option value="" disabled selected>Selecciona una mascota</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="mascotaSegunda">Otra Opción de mascota</label>
+                                <select class="input" id="mascotaSegunda">
+                                    <option value="" disabled selected>Selecciona una mascota</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="firstName">Nombre</label>
+                                <input class="input" id="firstName" type="text" placeholder="Tu nombre" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="lastName">Apellido</label>
+                                <input class="input" id="lastName" type="text" placeholder="Tu apellido" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="birthDate">Fecha de nacimiento</label>
+                                <input class="input" id="birthDate" type="date" placeholder="Tu fecha de nacimiento"
+                                    required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="email">Email</label>
+                                <input class="input" id="email" type="email" placeholder="tu@email.com" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="phone">Teléfono celular</label>
+                                <input class="input" id="phone" type="tel" placeholder="+57 XXX XX XX" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="landline">Teléfono fijo</label>
+                                <input class="input" id="landline" type="tel" placeholder="Teléfono fijo" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="direccion">Dirección y Barrio</label>
+                                <input class="input" id="direccion" type="text" placeholder="Dirección" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="ciudad">Ciudad</label>
+                                <input class="input" id="ciudad" type="text" placeholder="Ciudad" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="estado-civil">Estado civil</label>
+                                <select name="estado-civil" id="estado-civil" class="input" required>
+                                    <option value=""></option>
+                                    <option>Soltero/a</option>
+                                    <option>Casado/a</option>
+                                    <option>Divorciado/a</option>
+                                    <option>Viudo/a</option>
+                                    <option>Unión libre</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="profesion">Profesión</label>
+                                <input class="input" id="profesion" type="text" placeholder="Profesión" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="ingresos">Ingresos mensuales</label>
+                                <input class="input" id="ingresos" type="text" inputmode="numeric"
+                                    placeholder="$2.000.000" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="label" for="ocupacion">Ocupación de las personas del hogar</label>
+                                <input class="input" id="ocupacion" type="text" placeholder="Ocupación" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="lugar-trabajo">Lugar de trabajo</label>
+                                <input class="input" id="lugar-trabajo" type="text" placeholder="Lugar de trabajo"
+                                    required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="adultos-hogar">¿Cuántos adultos viven en su hogar?</label>
+                                <input class="input" id="adultos-hogar" type="number" inputmode="numeric"
+                                    placeholder="Número de adultos" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="label" for="ninos-hogar">¿Cuántos niños viven en su hogar?</label>
+                                <input class="input" id="ninos-hogar" type="number" inputmode="numeric"
+                                    placeholder="Número de niños" required />
+                            </div>
+
+                            <div class="form-group hidden" id="edades-ninos-group">
+                                <label class="label" for="edades-ninos">Edades de los niños</label>
+                                <input class="input" id="edades-ninos" type="text" placeholder="Ej: 3, 7, 12" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="label" for="primer-mascota">¿Este sería su primer animal de compañía?</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="primer-mascota" value="si">
+                                    <span>Sí</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="primer-mascota" value="no" checked required>
+                                    <span>No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="profesion">¿Quién va a ser el principal responsable del
+                                    cuidado del animal de compañía?</label>
+                                <input class="input" id="profesion" type="text" placeholder="" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="acuerdo">¿Están todos los integrantes de la familia de acuerdo
+                                    con adoptar un animal de compañía?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="acuerdo" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="acuerdo" value="no">
+                                        <span>No</span>
+                                    </label>
+                                    <input class="input" id="acuerdo-detalles" type="text" inputmode="text"
+                                        placeholder="Si no, explique los motivos"
+                                        style="visibility: hidden; pointer-events: none;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="alergias">¿Alguien de su familia sufre algún tipo de alergia
+                                    con los animales? (Explique)</label>
+                                <input class="input" id="alergias" placeholder="Describa la alergia" required></input>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="horas-solo">¿Cuántas horas al día va a estar el animal de
+                                    compañía solo?</label>
+                                <input class="input" id="horas-solo" placeholder="Describa la situación"
+                                    required></input>
+                            </div>
+                        </div>
+                        <div class="form-row form-row--vivienda">
+                            <div class="form-group">
+                                <label class="label" for="vivienda-tipo">Tipo de vivienda</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda-tipo" value="Apartamento" required>
+                                        <span>Apartamento</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda-tipo" value="Casa">
+                                        <span>Casa</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda-tipo" value="Finca">
+                                        <span>Finca</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda-tipo" value="Casa-lote">
+                                        <span>Casa-lote</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">¿En qué tipo de vivienda reside?</label>
+                                <div class="radio-group" style="flex-wrap: wrap; align-items: center;">
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda" value="Propia" required>
+                                        <span>Propia</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda" value="Familiar">
+                                        <span>Familiar</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="vivienda" value="Arriendo">
+                                        <span>Arriendo</span>
+                                    </label>
+                                    <div id="acuerdo-arrendatario-inline"
+                                        style="display: none; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                                        <span class="label" style="margin: 0;">¿El propietario está de acuerdo?</span>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="acuerdo-arrendatario" value="si">
+                                                <span>Sí</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="acuerdo-arrendatario" value="no">
+                                                <span>No</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="arrendatario-info" style="display: none;">
+                                <label class="label">Datos del arrendatario</label>
+                                <input class="input" id="arrendatario-nombre" type="text"
+                                    placeholder="Nombre del propietario" style="margin-bottom: 0.5rem;" />
+                                <input class="input" id="arrendatario-telefono" type="tel"
+                                    placeholder="Teléfono del propietario" />
+                            </div>
+                        </div>
+                        <div class="form-row form-row--align-inputs">
+                            <div class="form-group">
+                                <label class="label" for="comportamientos">¿Qué comportamientos considera inapropiados
+                                    por parte del animal de compañía?</label>
+                                <textarea class="input" id="comportamientos" placeholder="Describa la situación"
+                                    required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="horas-solo">¿Qué modos de educación o corrección usaría usted
+                                    en caso de que el animal de compañía presente comportamientos poco acertados para la
+                                    familia o requiera educación?</label>
+                                <textarea class="input" id="horas-solo" placeholder="Describa la situación"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row form-row--align-inputs">
+                            <div class="form-group">
+                                <label class="label" for="comportamientos">¿Si sale de viaje, de vacaciones, o se mudara
+                                    de ciudad que pasaría o quién cuidaría al animal de compañía?</label>
+                                <textarea class="input" id="comportamientos" placeholder="Describa la situación"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="ausencia-temporal">¿En caso de no estar en casa ningún
+                                    integrante de la familia por un tiempo corto (un día, una mañana y tarde, etc.),
+                                    donde dejaría al animal de companía?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="ausencia-temporal" value="Amarrado" required>
+                                        <span>Amarrado en algún lugar de la casa</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ausencia-temporal" value="familiar">
+                                        <span>Donde un familiar o vecino</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ausencia-temporal" value="libre">
+                                        <span>Libre en la casa</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ausencia-temporal" value="terraza">
+                                        <span>Terraza, balcón, patio, etc</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ausencia-temporal" value="guarderia">
+                                        <span>Guardería para mascotas</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="ausencia-temporal" value="otro">
+                                        <span>Otro</span>
+                                    </label>
+                                </div>
+                                <div class="form-group"></div>
+                                <input class="input" id="ausencia-temporal-detalles" type="text" inputmode="text"
+                                    placeholder="Especifique el lugar" />
+                            </div>
+
+                        </div>
+                        <div class="form-row form-row--align-inputs">
+                            <div class="form-group">
+                                <label class="label" for="reubicacion">¿Qué circunstancias lo harían reubicar a su
+                                    animal de compañía en un nuevo hogar? ¿Por qué?</label>
+                                <textarea class="input" id="reubicacion" placeholder="Describa la situación"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row form-row--align-inputs">
+                            <div class="form-group">
+                                <label class="label" for="reubicacion">En caso de una ruptura familiar,
+                                    fallecimiento o la llegada de un nuevo integrante a la familia, ¿qué pasaría con el
+                                    animal y en que cambiaría el trato?</label>
+                                <textarea class="input" id="reubicacion" placeholder="Describa la situación"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row form-row--cuidados">
+                            <div class="form-group">
+                                <label class="label" for="permitir-visita">¿Permitiría que nosotros fuéramos a su casa
+                                    antes y después de la adopción? </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="permitir-visita" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="permitir-visita" value="no">
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                                <div class="radio-group">
+                                    <input class="input" id="permitir-visita-detalles" type="text" inputmode="text"
+                                        placeholder="Si no, explique los motivos"
+                                        style="visibility: hidden; pointer-events: none;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="cuidados">Señale los cuidados que Usted y su familia estarían
+                                    dispuestos a darle al adoptado:</label>
+                                <div class="checkbox-cuidados">
+                                    <ol>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="veterinario" checked />
+                                            <label for="veterinario">Visitas periódicas al veterinario</label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="vacunacion" checked />
+                                            <label for="vacunacion">Vacunación y vitaminas </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="paseos" checked />
+                                            <label for="paseos">Paseos con correa </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="collar" checked />
+                                            <label for="collar">Uso de collar con placa de identificación </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="agua" checked />
+                                            <label for="agua">Plato con agua limpia todos los días </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="desparasitacion" checked />
+                                            <label for="desparasitacion">Desparasitación </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="cepillado" checked />
+                                            <label for="cepillado">Cepillado de pelo </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="limpieza" checked />
+                                            <label for="limpieza">Limpieza diaria de arenero de gatos </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="profilaxis" checked />
+                                            <label for="profilaxis">En el caso de animales adultos, realizarles
+                                                profilaxis </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="microchip" checked />
+                                            <label for="microchip">Implantación del microchip </label>
+                                        </div>
+                                        <div class="checkbox-cuidados">
+                                            <input type="checkbox" id="alimentacion" checked />
+                                            <label for="alimentacion">Alimentación adecuada recomendada por el médico
+                                                veterinario</label>
+                                        </div>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="esterilizacion">¿Está de acuerdo con esterilizar al animal de
+                                    compañía?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="esterilizacion" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="esterilizacion" value="no">
+                                        <span>No</span>
+                                    </label>
+                                    <input class="input" id="esterilizacion-detalles" type="text" inputmode="text"
+                                        placeholder="Si no, explique los motivos"
+                                        style="visibility: hidden; pointer-events: none;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" for="primera-adopcion">¿Ha realizado algún proceso de adopción
+                                    antes?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="primera-adopcion" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="primera-adopcion" value="no">
+                                        <span>No</span>
+                                    </label>
+                                    <input class="input" id="primera-adopcion-detalles" type="text" inputmode="text"
+                                        placeholder="Si no, explique los motivos"
+                                        style="visibility: hidden; pointer-events: none;" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="adopcion-previa-detalles" class="hidden">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="label" for="adopcion-previa-fundacion">Nombre de la fundación o
+                                        persona natural</label>
+                                    <input class="input" id="adopcion-previa-fundacion" type="text" inputmode="text"
+                                        placeholder="Nombre de la fundación o persona natural" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Animal adoptado</label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="adopcion-previa-tipo" value="perro">
+                                            <span>Perro</span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="adopcion-previa-tipo" value="gato">
+                                            <span>Gato</span>
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="adopcion-previa-tipo" value="otro">
+                                            <span>Otro</span>
+                                        </label>
+                                        <input class="input" id="adopcion-previa-nombre-animal" type="text"
+                                            inputmode="text" placeholder="Nombre del animal" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label" for="adopcion-previa-telefonos">Teléfonos de la fundación o
+                                        persona natural</label>
+                                    <input class="input" id="adopcion-previa-telefonos" type="tel" inputmode="tel"
+                                        placeholder="Teléfonos de contacto" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="label" for="adopcion-previa-otro-contacto">Otro medio de
+                                        contacto</label>
+                                    <input class="input" id="adopcion-previa-otro-contacto" type="text" inputmode="text"
+                                        placeholder="Email, redes sociales, etc." />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label" for="monto-mensual">¿Qué monto económico tiene presupuestado
+                                    mensualmente para el adoptado y los cuidados requeridos para su bienestar?</label>
+                                <input class="input" id="monto-mensual" type="text" inputmode="numeric"
+                                    placeholder="$1.000.000" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="label">¿Estaría dispuesto a sobrepasar su presupuesto en caso de ser
+                                    necesario (por ejemplo, una urgencia médica, una guardería en época de vacaciones,
+                                    etc)?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="sobrepasar-presupuesto" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="sobrepasar-presupuesto" value="no">
+                                        <span>No</span>
+                                    </label>
+                                    <input class="input input-invisible" id="sobrepasar-presupuesto-porque" type="text"
+                                        placeholder="¿Por qué?" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="label">¿Es consciente de la responsabilidad que adquirirá con un animal de
+                                    compañía para los siguientes 10 a 15 años?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="consciente-responsabilidad" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="consciente-responsabilidad" value="no">
+                                        <span>No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label">¿Está totalmente de seguro de seguir con el proceso de adopción,
+                                    aunque el animal de compañía llegue a realizar daños materiales, presente algún tipo
+                                    de comportamiento, ruptura en el hogar, mudanza a otro país, entre otras
+                                    situaciones?</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="seguro-adopcion" value="si" required>
+                                        <span>Sí</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="seguro-adopcion" value="no">
+                                        <span>No</span>
+                                    </label>
+                                    <input class="input input-invisible" id="seguro-adopcion-porque" type="text"
+                                        placeholder="¿Por qué?" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="btn-enviar-fin" class="hidden">
+                            <button type="submit" class="btn btn-orange-gradient btn-full">
+                                <i data-lucide="send" class="icon-xs"></i>
+                                Enviar Mensaje
+                            </button>
+                        </div>
+
+                        <div id="seccion-animales" class="hidden">
+                            <p class="label animales-intro">Por favor liste todos los animales que tiene en este momento
+                                o haya tenido en los últimos años</p>
+                            <div class="ref-table-wrapper">
+                                <table class="ref-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Raza</th>
+                                            <th>Edad</th>
+                                            <th>Temperamento</th>
+                                            <th>Indique si está vivo y dado su caso explique el motivo de su
+                                                fallecimiento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input class="input" type="text" name="animal-nombre-1"
+                                                    placeholder="Nombre" /></td>
+                                            <td><input class="input" type="text" name="animal-raza-1"
+                                                    placeholder="Raza" /></td>
+                                            <td><input class="input" type="text" name="animal-edad-1"
+                                                    placeholder="Edad" /></td>
+                                            <td><input class="input" type="text" name="animal-temperamento-1"
+                                                    placeholder="Temperamento" /></td>
+                                            <td><input class="input" type="text" name="animal-estado-1"
+                                                    placeholder="Vivo / motivo de fallecimiento" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="input" type="text" name="animal-nombre-2"
+                                                    placeholder="Nombre" /></td>
+                                            <td><input class="input" type="text" name="animal-raza-2"
+                                                    placeholder="Raza" /></td>
+                                            <td><input class="input" type="text" name="animal-edad-2"
+                                                    placeholder="Edad" /></td>
+                                            <td><input class="input" type="text" name="animal-temperamento-2"
+                                                    placeholder="Temperamento" /></td>
+                                            <td><input class="input" type="text" name="animal-estado-2"
+                                                    placeholder="Vivo / motivo de fallecimiento" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="input" type="text" name="animal-nombre-3"
+                                                    placeholder="Nombre" /></td>
+                                            <td><input class="input" type="text" name="animal-raza-3"
+                                                    placeholder="Raza" /></td>
+                                            <td><input class="input" type="text" name="animal-edad-3"
+                                                    placeholder="Edad" /></td>
+                                            <td><input class="input" type="text" name="animal-temperamento-3"
+                                                    placeholder="Temperamento" /></td>
+                                            <td><input class="input" type="text" name="animal-estado-3"
+                                                    placeholder="Vivo / motivo de fallecimiento" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="seccion-referencias" class="seccion-referencias hidden">
+                            <h3 class="referencias-title">Referencias Personales</h3>
+                            <div class="ref-table-wrapper">
+                                <table class="ref-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Parentesco</th>
+                                            <th>Teléfono</th>
+                                            <th>Dirección</th>
+                                            <th>Ciudad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input class="input" type="text" name="ref-personal-nombre-1"
+                                                    placeholder="Nombre" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-parentesco-1"
+                                                    placeholder="Parentesco" /></td>
+                                            <td><input class="input" type="tel" name="ref-personal-telefono-1"
+                                                    placeholder="Teléfono" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-direccion-1"
+                                                    placeholder="Dirección" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-ciudad-1"
+                                                    placeholder="Ciudad" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="input" type="text" name="ref-personal-nombre-2"
+                                                    placeholder="Nombre" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-parentesco-2"
+                                                    placeholder="Parentesco" /></td>
+                                            <td><input class="input" type="tel" name="ref-personal-telefono-2"
+                                                    placeholder="Teléfono" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-direccion-2"
+                                                    placeholder="Dirección" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-ciudad-2"
+                                                    placeholder="Ciudad" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="input" type="text" name="ref-personal-nombre-3"
+                                                    placeholder="Nombre" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-parentesco-3"
+                                                    placeholder="Parentesco" /></td>
+                                            <td><input class="input" type="tel" name="ref-personal-telefono-3"
+                                                    placeholder="Teléfono" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-direccion-3"
+                                                    placeholder="Dirección" /></td>
+                                            <td><input class="input" type="text" name="ref-personal-ciudad-3"
+                                                    placeholder="Ciudad" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3 class="referencias-title">Referencias Veterinarias o Centros Médicos Veterinarios de
+                                Cabecera</h3>
+                            <div class="ref-table-wrapper">
+                                <table class="ref-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del Veterinario</th>
+                                            <th>Nombre de la Clínica Veterinaria</th>
+                                            <th>Teléfonos</th>
+                                            <th>Dirección - Ciudad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input class="input" type="text" name="ref-vet-nombre-1"
+                                                    placeholder="Nombre del veterinario" /></td>
+                                            <td><input class="input" type="text" name="ref-vet-clinica-1"
+                                                    placeholder="Nombre de la clínica" /></td>
+                                            <td><input class="input" type="tel" name="ref-vet-telefono-1"
+                                                    placeholder="Teléfonos" /></td>
+                                            <td><input class="input" type="text" name="ref-vet-direccion-1"
+                                                    placeholder="Dirección - Ciudad" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="input" type="text" name="ref-vet-nombre-2"
+                                                    placeholder="Nombre del veterinario" /></td>
+                                            <td><input class="input" type="text" name="ref-vet-clinica-2"
+                                                    placeholder="Nombre de la clínica" /></td>
+                                            <td><input class="input" type="tel" name="ref-vet-telefono-2"
+                                                    placeholder="Teléfonos" /></td>
+                                            <td><input class="input" type="text" name="ref-vet-direccion-2"
+                                                    placeholder="Dirección - Ciudad" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input class="input" type="text" name="ref-vet-nombre-3"
+                                                    placeholder="Nombre del veterinario" /></td>
+                                            <td><input class="input" type="text" name="ref-vet-clinica-3"
+                                                    placeholder="Nombre de la clínica" /></td>
+                                            <td><input class="input" type="tel" name="ref-vet-telefono-3"
+                                                    placeholder="Teléfonos" /></td>
+                                            <td><input class="input" type="text" name="ref-vet-direccion-3"
+                                                    placeholder="Dirección - Ciudad" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <button type="submit" class="btn btn-orange-gradient btn-full">
+                                <i data-lucide="send" class="icon-xs"></i>
+                                Enviar Mensaje
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="/static/images/logo.png" alt="Logo Animal Libre" class="footer-logo-img" />
+                    </div>
+                    <p class="footer-desc">Dedicados a rescatar, rehabilitar y encontrar hogares amorosos para animales
+                        de compañía abandonados.</p>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/adopciones">Adopciones</a></li>
+                        <li><a href="/nosotros">Nosotros</a></li>
+                        <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+                        <li><a href="/contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Contacto</h3>
+                    <ul class="footer-contact">
+                        <li>info@animallibre.com</li>
+                        <li>+34 XXX XXX XXX</li>
+                        <li>Síguenos en redes sociales</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Fundación Animal Libre. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+
+    <!-- MODAL CONFIRMACIÓN ENVÍO -->
+    <div id="adopcion-modal-overlay" class="adopcion-modal-overlay" style="display:none;" role="dialog"
+        aria-modal="true" aria-labelledby="adopcion-modal-titulo">
+        <div class="adopcion-modal">
+            <button class="adopcion-modal-close" id="adopcion-modal-close" aria-label="Cerrar">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="adopcion-modal-icon">
+                <i data-lucide="circle-check-big"></i>
+            </div>
+            <h2 class="adopcion-modal-titulo" id="adopcion-modal-titulo">¡Formulario enviado!</h2>
+            <p class="adopcion-modal-texto">Gracias por completar el formulario de adopción. Nos pondremos en contacto
+                contigo pronto.<br><br>Por favor descarga y firma el <strong>compromiso de adopción</strong> para
+                continuar con el proceso.</p>
+            <a class="btn btn-orange-gradient adopcion-modal-btn" href="/static/docs/formulario-adopcion.pdf"
+                download>
+                <i data-lucide="download" class="icon-xs"></i>
+                Descargar Compromiso de Adopción
+            </a>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>

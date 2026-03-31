@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<a href="/admin/documentos-fiscales" style="color:#093825;font-size:0.9rem">← Volver a documentos</a>
+<h1 class="admin-title" style="margin-top:12px">Agregar documento</h1>
+
+<form method="POST" style="max-width:560px">
+  <div class="admin-table-wrap" style="padding:24px;display:flex;flex-direction:column;gap:16px">
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">Título *</label>
+      <input name="title" class="input" required style="width:100%;box-sizing:border-box"
+             placeholder="Ej: Informe de Gestión 2024" />
+    </div>
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">Descripción <span style="font-weight:400">(opcional)</span></label>
+      <textarea name="description" class="input" rows="2" style="width:100%;box-sizing:border-box;resize:vertical"
+                placeholder="Breve descripción del documento"></textarea>
+    </div>
+
+    <div>
+      <label style="font-size:0.85rem;font-weight:600;color:#475569;display:block;margin-bottom:4px">URL del PDF *</label>
+      <input name="file_url" class="input" required style="width:100%;box-sizing:border-box"
+             placeholder="https://..." />
+      <span style="font-size:0.78rem;color:#94a3b8">Puede ser un link de Google Drive, Dropbox o directo al PDF</span>
+    </div>
+
+    <div style="display:flex;gap:12px">
+      <button type="submit" class="btn-sm btn-sm-green" style="padding:10px 24px;font-size:0.95rem">Agregar</button>
+      <a href="/admin/documentos-fiscales" class="btn-sm btn-sm-gray" style="padding:10px 24px;font-size:0.95rem;text-decoration:none">Cancelar</a>
+    </div>
+
+  </div>
+</form>
+{% endblock %}

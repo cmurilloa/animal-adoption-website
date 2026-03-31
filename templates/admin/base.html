@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Animal Libre</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <style>
+    body { background: #f0f7f3; font-family: system-ui, sans-serif; margin: 0; }
+    .admin-layout { display: flex; min-height: 100vh; }
+    .admin-sidebar {
+      width: 220px; background: #093825; color: #fff; padding: 24px 0; flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .admin-sidebar .brand {
+      padding: 0 20px 20px; font-size: 1.1rem; font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.15); margin-bottom: 8px;
+    }
+    .admin-sidebar a {
+      display: block; padding: 10px 20px; color: rgba(255,255,255,0.8);
+      text-decoration: none; border-radius: 0; transition: background 0.15s;
+    }
+    .admin-sidebar a:hover, .admin-sidebar a.active { background: rgba(255,255,255,0.12); color: #fff; }
+    .admin-sidebar .sidebar-footer { margin-top: auto; padding: 20px; }
+    .admin-sidebar .sidebar-footer a { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+    .admin-main { flex: 1; padding: 32px; overflow-x: auto; }
+    .admin-title { font-size: 1.6rem; font-weight: 700; color: #093825; margin: 0 0 24px; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .stat-card .stat-value { font-size: 2rem; font-weight: 700; color: #093825; }
+    .stat-card .stat-label { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+    .admin-table-wrap { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden; margin-bottom: 32px; }
+    .admin-table-wrap h2 { padding: 16px 20px; margin: 0; font-size: 1rem; font-weight: 600; border-bottom: 1px solid #e2e8f0; color: #093825; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { background: #f8fafc; padding: 10px 16px; text-align: left; font-weight: 600; color: #475569; border-bottom: 1px solid #e2e8f0; }
+    td { padding: 10px 16px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-yellow { background: #fef9c3; color: #854d0e; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+    .btn-sm { padding: 4px 12px; border-radius: 6px; border: none; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+    .btn-sm-green { background: #093825; color: #fff; }
+    .btn-sm-red { background: #ef4444; color: #fff; }
+    .btn-sm-gray { background: #e2e8f0; color: #475569; }
+    select.status-select { padding: 4px 8px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 0.82rem; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="brand">🐾 Animal Libre</div>
+    <a href="/admin" {% if request.endpoint == 'admin.dashboard' %}class="active"{% endif %}>Dashboard</a>
+    <a href="/admin/mascotas" {% if request.endpoint == 'admin.mascotas' %}class="active"{% endif %}>Mascotas</a>
+    <a href="/admin/solicitudes" {% if request.endpoint in ['admin.solicitudes','admin.ver_solicitud'] %}class="active"{% endif %}>Solicitudes</a>
+    <a href="/admin/mensajes" {% if request.endpoint == 'admin.mensajes' %}class="active"{% endif %}>Mensajes</a>
+    <a href="/admin/blog" {% if request.endpoint in ['admin.blog_list','admin.blog_new','admin.blog_edit'] %}class="active"{% endif %}>Blog</a>
+    <a href="/admin/documentos-fiscales" {% if request.endpoint in ['admin.documentos','admin.documento_nuevo'] %}class="active"{% endif %}>Documentos Fiscales</a>
+    <div class="sidebar-footer"><a href="/">← Ver sitio</a></div>
+  </aside>
+
+  <main class="admin-main">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

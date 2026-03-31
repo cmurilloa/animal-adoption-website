@@ -1,0 +1,55 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<a href="/admin/solicitudes" style="color:#093825;font-size:0.9rem;">← Volver a solicitudes</a>
+<h1 class="admin-title" style="margin-top:12px">Solicitud #{{ application.id }}</h1>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px">
+
+  <div class="admin-table-wrap">
+    <h2>Datos del solicitante</h2>
+    <table>
+      <tr><th>Nombre</th><td>{{ application.nombre }} {{ application.apellido }}</td></tr>
+      <tr><th>Email</th><td>{{ application.email }}</td></tr>
+      <tr><th>Teléfono</th><td>{{ application.telefono or '—' }}</td></tr>
+      <tr><th>Cédula</th><td>{{ application.cedula or '—' }}</td></tr>
+      <tr><th>Mascota solicitada</th><td>{{ application.pet_name or '—' }}</td></tr>
+      <tr><th>Fecha</th><td>{{ application.created_at.strftime('%d/%m/%Y %H:%M') }}</td></tr>
+    </table>
+  </div>
+
+  <div class="admin-table-wrap">
+    <h2>Estado</h2>
+    <div style="padding:16px">
+      <form method="POST" action="/admin/solicitudes/{{ application.id }}/status">
+        <div style="margin-bottom:12px">
+          {% if application.status == 'aprobada' %}<span class="badge badge-green" style="font-size:1rem;padding:6px 16px">{{ application.status }}</span>
+          {% elif application.status == 'rechazada' %}<span class="badge badge-red" style="font-size:1rem;padding:6px 16px">{{ application.status }}</span>
+          {% elif application.status == 'en revision' %}<span class="badge badge-blue" style="font-size:1rem;padding:6px 16px">{{ application.status }}</span>
+          {% else %}<span class="badge badge-yellow" style="font-size:1rem;padding:6px 16px">{{ application.status }}</span>{% endif %}
+        </div>
+        <select name="status" class="status-select" style="width:100%;margin-bottom:10px;padding:8px">
+          {% for s in statuses %}
+          <option value="{{ s }}" {% if application.status == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn-sm btn-sm-green" style="width:100%;padding:8px">Actualizar estado</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+{% if form_data %}
+<div class="admin-table-wrap" style="max-width:900px">
+  <h2>Datos del formulario</h2>
+  <table>
+    {% for key, value in form_data.items() %}
+    <tr>
+      <th style="width:220px;color:#475569">{{ key }}</th>
+      <td>{{ value if value else '—' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(venv/bin/pip install:*)",
+      "Bash(venv/bin/python seed.py)",
+      "Bash(curl -s http://127.0.0.1:5000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/adopciones)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/admin)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/api/contact -H \"Content-Type: application/json\" -d '{\"\"firstName\"\":\"\"Ana\"\",\"\"lastName\"\":\"\"Lopez\"\",\"\"email\"\":\"\"ana@test.com\"\",\"\"subject\"\":\"\"Adopción\"\",\"\"message\"\":\"\"Hola, quiero info\"\"}')",
+      "Bash(__NEW_LINE_483f35325e6d0d51__ curl:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/admin/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/admin/mascotas)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/admin/solicitudes)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:5000/admin/mensajes)",
+      "Bash(kill %1)",
+      "Bash(cd:*)",
+      "Bash(curl -s http://127.0.0.1:5000/api/pets)",
+      "Bash(venv/bin/python -c \"from flask_mail import Mail; print\\(''Flask-Mail OK''\\)\")",
+      "Bash(curl -s http://127.0.0.1:5000/adopciones)"
+    ]
+  }
+}
