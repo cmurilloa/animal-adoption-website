@@ -1,5 +1,6 @@
 .env
 .claude/
+.vscode/
 instance/
 __pycache__/
 *.pyc
