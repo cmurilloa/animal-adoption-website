@@ -76,13 +76,26 @@ Animal adoption website/
 
 ## Panel de administración
 
-Acceso en `/admin`. Permite:
+Acceso en `/admin`. Requiere usuario y contraseña configurados en las variables de entorno.
 
-- **Mascotas:** crear, editar y eliminar mascotas; subir fotos múltiples
+Permite:
+
+- **Mascotas:** crear, editar y eliminar mascotas; subir fotos múltiples; reordenar y eliminar fotos individuales; autocompletado de razas existentes
 - **Solicitudes:** ver y cambiar el estado de solicitudes de adopción
 - **Mensajes:** revisar mensajes del formulario de contacto
 - **Blog:** crear, editar y publicar entradas del blog
-- **Documentos fiscales:** agregar y eliminar documentos
+- **Documentos fiscales:** subir PDFs o ingresar URL; agregar y eliminar documentos
+
+### Autenticación
+
+El panel usa sesiones Flask con protección contra fuerza bruta (bloqueo de 5 minutos tras 5 intentos fallidos). Las credenciales se configuran vía variables de entorno:
+
+```bash
+ADMIN_USERNAME=admin
+# Generar el hash de la contraseña:
+python -c "from werkzeug.security import generate_password_hash; print(generate_password_hash('tu-contraseña'))"
+ADMIN_PASSWORD_HASH=<hash generado>
+```
 
 ## Instalación y ejecución
 
@@ -92,29 +105,32 @@ python -m venv venv
 source venv/bin/activate
 
 # Instalar dependencias
-pip install flask flask-sqlalchemy flask-mail
+pip install flask flask-sqlalchemy flask-mail python-dotenv
 
-# Crear las tablas e inicializar la DB
-python -c "from app import app; from extensions import db; app.app_context().push(); db.create_all()"
+# Copiar y configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus credenciales de correo y admin
 
-# Cargar mascotas de ejemplo
-python seed.py
-
-# Correr el servidor
+# El servidor crea las tablas y carga los documentos fiscales automáticamente al iniciar
 python app.py
 # → http://localhost:5001
 ```
 
-## Variables de entorno (correo)
+## Variables de entorno
 
-Para que las notificaciones por correo funcionen, configurar en `app.py`:
+Copia `.env.example` a `.env` y completa los valores:
 
-```python
-app.config["MAIL_USERNAME"] = "animalibremedellin@gmail.com"
-app.config["MAIL_PASSWORD"] = "tu_app_password_de_gmail"
-```
-
-Se recomienda usar una **App Password** de Google (no la contraseña de la cuenta).
+| Variable | Descripción |
+|---|---|
+| `SECRET_KEY` | Clave secreta de Flask (sessions) |
+| `DATABASE_URL` | URI de la base de datos (default: SQLite) |
+| `ADMIN_USERNAME` | Usuario del panel de administración |
+| `ADMIN_PASSWORD_HASH` | Hash Werkzeug de la contraseña del admin |
+| `MAIL_SERVER` | Servidor SMTP (default: smtp.gmail.com) |
+| `MAIL_PORT` | Puerto SMTP (default: 587) |
+| `MAIL_USERNAME` | Correo desde el que se envían notificaciones |
+| `MAIL_PASSWORD` | App Password de Gmail (no la contraseña de la cuenta) |
+| `MAIL_DEFAULT_SENDER` | Nombre y correo del remitente |
 
 ## Funcionalidades destacadas
 
