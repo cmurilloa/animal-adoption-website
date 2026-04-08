@@ -1200,7 +1200,8 @@ input[type="number"].input { -moz-appearance: textfield; appearance: textfield; 
 .social-icon:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 .social-icon.facebook:hover { color: #2563eb; }
 .social-icon.instagram:hover { color: var(--pink-600); }
-.social-icon.twitter:hover { color: #60a5fa; }
+.social-icon.tiktok:hover  { color: #010101; }
+.social-icon.youtube:hover { color: #ff0000; }
 
 .faq-item { background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 1.5rem; }
 .faq-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
