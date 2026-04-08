@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Animal Libre - Adopta, no compres{% endblock %}</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/static/images/logo.png" alt="Logo Animal Libre" class="nav-logo-img" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="/" {% if request.path == '/' %}class="active"{% endif %}>Inicio</a></li>
+        <li><a href="/adopciones" {% if request.path.startswith('/adopciones') or request.path == '/formulario-de-adopcion' %}class="active"{% endif %}>Adopciones</a></li>
+        <li><a href="/nosotros" {% if request.path == '/nosotros' %}class="active"{% endif %}>Nosotros</a></li>
+        <li><a href="/como-ayudar" {% if request.path == '/como-ayudar' %}class="active"{% endif %}>Cómo Ayudar</a></li>
+        <li><a href="/contacto" {% if request.path == '/contacto' %}class="active"{% endif %}>Contacto</a></li>
+        <li><a href="/documentos-fiscales" {% if request.path == '/documentos-fiscales' %}class="active"{% endif %}>Documentos Fiscales</a></li>
+        <li><a href="/blog" {% if request.path.startswith('/blog') %}class="active"{% endif %}>Blog</a></li>
+        <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+        <i data-lucide="menu" class="icon-lg"></i>
+      </button>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/" {% if request.path == '/' %}class="active"{% endif %}>Inicio</a>
+      <a href="/adopciones" {% if request.path.startswith('/adopciones') or request.path == '/formulario-de-adopcion' %}class="active"{% endif %}>Adopciones</a>
+      <a href="/nosotros" {% if request.path == '/nosotros' %}class="active"{% endif %}>Nosotros</a>
+      <a href="/como-ayudar" {% if request.path == '/como-ayudar' %}class="active"{% endif %}>Cómo Ayudar</a>
+      <a href="/contacto" {% if request.path == '/contacto' %}class="active"{% endif %}>Contacto</a>
+      <a href="/documentos-fiscales" {% if request.path == '/documentos-fiscales' %}class="active"{% endif %}>Documentos Fiscales</a>
+      <a href="/blog" {% if request.path.startswith('/blog') %}class="active"{% endif %}>Blog</a>
+      <a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block footer %}
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="/static/images/logo.png" alt="Logo Animal Libre" class="footer-logo-img" />
+          </div>
+          <p class="footer-desc">Dedicados a rescatar, rehabilitar y encontrar hogares amorosos para animales de compañía abandonados.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Enlaces Rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/adopciones">Adopciones</a></li>
+            <li><a href="/nosotros">Nosotros</a></li>
+            <li><a href="/como-ayudar">Cómo Ayudar</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/documentos-fiscales">Documentos Fiscales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Contacto</h3>
+          <ul class="footer-contact">
+            <li>animalibremedellin@gmail.com</li>
+            <li>+1 (631) 764-7313</li>
+            <li>Síguenos en redes sociales</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Fundación Animal Libre. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  {% endblock %}
+
+</div>
+
+{% block body_end %}{% endblock %}
+
+<script src="/static/js/main.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

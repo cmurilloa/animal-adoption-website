@@ -1,193 +1,109 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adopciones - Animal Libre</title>
-  <link rel="icon" type="image/png" href="/static/images/logo.png" />
-  <link rel="stylesheet" href="/static/css/styles.css" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-</head>
+{% block title %}Adopciones - Animal Libre{% endblock %}
 
-<body>
+{% block content %}
 
-  <div class="page-wrapper">
+  <!-- PAGE HEADER -->
+  <section class="page-header page-header-blue">
+    <div class="container">
+      <h1 class="text-blue-800">Animales en Adopción</h1>
+      <p>Encuentra a tu nuevo mejor amigo. Todos nuestros animales están esterilizados, vacunados y listos para un hogar amoroso.</p>
+    </div>
+  </section>
 
-    <!-- HEADER -->
-    <header class="site-header">
-      <nav class="nav-inner">
-        <a href="/" class="nav-logo">
-          <img src="/static/images/logo.png" alt="Logo Animal Libre" class="nav-logo-img" />
-        </a>
-        <ul class="nav-links">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/adopciones" class="active">Adopciones</a></li>
-          <li><a href="/nosotros">Nosotros</a></li>
-          <li><a href="/como-ayudar">Cómo Ayudar</a></li>
-          <li><a href="/contacto">Contacto</a></li>
-        <li><a href="/documentos-fiscales">Documentos Fiscales</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
-        </ul>
-        <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
-          <i data-lucide="menu" class="icon-lg"></i>
-        </button>
-      </nav>
-      <div class="mobile-nav" id="mobileNav">
-        <a href="/">Inicio</a>
-        <a href="/adopciones" class="active">Adopciones</a>
-        <a href="/nosotros">Nosotros</a>
-        <a href="/como-ayudar">Cómo Ayudar</a>
-        <a href="/contacto">Contacto</a>
-      <a href="/documentos-fiscales">Documentos Fiscales</a>
-      <a href="/blog">Blog</a>
-      <a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a>
-      </div>
-    </header>
-
-    <main>
-
-      <!-- PAGE HEADER -->
-      <section class="page-header page-header-blue">
-        <div class="container">
-          <h1 class="text-blue-800">Animales en Adopción</h1>
-          <p>Encuentra a tu nuevo mejor amigo. Todos nuestros animales están esterilizados, vacunados y listos para un
-            hogar amoroso.</p>
-        </div>
-      </section>
-
-      <!-- FILTERS -->
-      <section class="chip-filters-section">
-        <div class="chip-filters-inner">
-          <div class="chip-search-row">
-            <div class="input-wrap">
-              <span class="input-icon"><i data-lucide="search" class="icon-sm"></i></span>
-              <input type="text" class="input input-search" id="searchInput" placeholder="Buscar por nombre..." />
-            </div>
-          </div>
-          <div class="chip-filters">
-            <div class="chip-filters-row">
-              <span class="chip-filters-label">Favoritos</span>
-              <button class="chip-btn chip-btn-favorite" id="favoritesFilter" data-group="favorites" data-value="favoritos">❤️ Mis favoritos</button>
-            </div>
-            <div class="chip-filters-row">
-              <span class="chip-filters-label">Raza</span>
-              <select class="input" id="breedInput" style="min-width:160px">
-                <option value="">Todas las razas</option>
-              </select>
-            </div>
-            <div class="chip-filters-row">
-              <span class="chip-filters-label">Edad (años)</span>
-              <input type="number" class="input" id="ageMin" placeholder="Desde" min="0" max="30" step="1" style="width:90px" />
-              <span style="color:#64748b;font-size:0.9rem">—</span>
-              <input type="number" class="input" id="ageMax" placeholder="Hasta" min="0" max="30" step="1" style="width:90px" />
-            </div>
-            <div class="chip-filters-row">
-              <span class="chip-filters-label">Sexo</span>
-              <button class="chip-btn active" data-group="gender" data-value="todos">Todos</button>
-              <button class="chip-btn" data-group="gender" data-value="Macho">Macho</button>
-              <button class="chip-btn" data-group="gender" data-value="Hembra">Hembra</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PETS GRID -->
-      <section class="section bg-white">
-        <div class="container">
-          <div id="petsCount" class="pets-count"></div>
-          <div id="petsGrid" class="grid-3"></div>
-          <div id="noResults" class="no-results" style="display:none;">
-            <p>No se encontraron animales con esos criterios.</p>
-            <button onclick="clearFilters()" class="btn btn-outline-blue">Limpiar filtros</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ADOPTION PROCESS -->
-      <section class="section bg-gray">
-        <div class="container-sm">
-          <h2 class="section-title text-center mb-3">Proceso de Adopción</h2>
-          <div class="adoption-steps">
-            <div class="adoption-step">
-              <div class="step-num">1</div>
-              <div class="step-content">
-                <h3>Encuentra a tu compañero</h3>
-                <p>Navega por nuestros animales disponibles y encuentra el que más conecte contigo.</p>
-              </div>
-            </div>
-            <div class="adoption-step">
-              <div class="step-num">2</div>
-              <div class="step-content">
-                <h3>Solicita la adopción</h3>
-                <p>Completa el formulario de solicitud y cuéntanos sobre ti y tu hogar.</p>
-              </div>
-            </div>
-            <div class="adoption-step">
-              <div class="step-num">3</div>
-              <div class="step-content">
-                <h3>Entrevista y visita</h3>
-                <p>Realizamos una entrevista y, si es apropiado, visitamos tu hogar para asegurar un buen match.</p>
-              </div>
-            </div>
-            <div class="adoption-step">
-              <div class="step-num">4</div>
-              <div class="step-content">
-                <h3>¡Bienvenido a casa!</h3>
-                <p>Firma el contrato de adopción y lleva a tu nuevo amigo a casa. Te apoyamos en el proceso de
-                  adaptación.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-grid">
-          <div>
-            <div class="footer-logo">
-              <img src="/static/images/logo.png" alt="Logo Animal Libre" class="footer-logo-img" />
-            </div>
-            <p class="footer-desc">Dedicados a rescatar, rehabilitar y encontrar hogares amorosos para animales de
-              compañía abandonados.</p>
-          </div>
-          <div>
-            <h3 class="footer-heading">Enlaces Rápidos</h3>
-            <ul class="footer-links">
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/adopciones">Adopciones</a></li>
-              <li><a href="/nosotros">Nosotros</a></li>
-              <li><a href="/como-ayudar">Cómo Ayudar</a></li>
-              <li><a href="/contacto">Contacto</a></li>
-        <li><a href="/documentos-fiscales">Documentos Fiscales</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="footer-heading">Contacto</h3>
-            <ul class="footer-contact">
-              <li>animalibremedellin@gmail.com</li>
-              <li>+1 (631) 764-7313</li>
-              <li>Síguenos en redes sociales</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Fundación Animal Libre. Todos los derechos reservados.</p>
+  <!-- FILTERS -->
+  <section class="chip-filters-section">
+    <div class="chip-filters-inner">
+      <div class="chip-search-row">
+        <div class="input-wrap">
+          <span class="input-icon"><i data-lucide="search" class="icon-sm"></i></span>
+          <input type="text" class="input input-search" id="searchInput" placeholder="Buscar por nombre..." />
         </div>
       </div>
-    </footer>
+      <div class="chip-filters">
+        <div class="chip-filters-row">
+          <span class="chip-filters-label">Favoritos</span>
+          <button class="chip-btn chip-btn-favorite" id="favoritesFilter" data-group="favorites" data-value="favoritos">❤️ Mis favoritos</button>
+        </div>
+        <div class="chip-filters-row">
+          <span class="chip-filters-label">Raza</span>
+          <select class="input" id="breedInput" style="min-width:160px">
+            <option value="">Todas las razas</option>
+          </select>
+        </div>
+        <div class="chip-filters-row">
+          <span class="chip-filters-label">Edad (años)</span>
+          <input type="number" class="input" id="ageMin" placeholder="Desde" min="0" max="30" step="1" style="width:90px" />
+          <span style="color:#64748b;font-size:0.9rem">—</span>
+          <input type="number" class="input" id="ageMax" placeholder="Hasta" min="0" max="30" step="1" style="width:90px" />
+        </div>
+        <div class="chip-filters-row">
+          <span class="chip-filters-label">Sexo</span>
+          <button class="chip-btn active" data-group="gender" data-value="todos">Todos</button>
+          <button class="chip-btn" data-group="gender" data-value="Macho">Macho</button>
+          <button class="chip-btn" data-group="gender" data-value="Hembra">Hembra</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  </div>
+  <!-- PETS GRID -->
+  <section class="section bg-white">
+    <div class="container">
+      <div id="petsCount" class="pets-count"></div>
+      <div id="petsGrid" class="grid-3"></div>
+      <div id="noResults" class="no-results" style="display:none;">
+        <p>No se encontraron animales con esos criterios.</p>
+        <button id="clearFiltersBtn" class="btn btn-outline-blue">Limpiar filtros</button>
+      </div>
+    </div>
+  </section>
 
+  <!-- ADOPTION PROCESS -->
+  <section class="section bg-gray">
+    <div class="container-sm">
+      <h2 class="section-title text-center mb-3">Proceso de Adopción</h2>
+      <div class="adoption-steps">
+        <div class="adoption-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Encuentra a tu compañero</h3>
+            <p>Navega por nuestros animales disponibles y encuentra el que más conecte contigo.</p>
+          </div>
+        </div>
+        <div class="adoption-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Solicita la adopción</h3>
+            <p>Completa el formulario de solicitud y cuéntanos sobre ti y tu hogar.</p>
+          </div>
+        </div>
+        <div class="adoption-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Entrevista y visita</h3>
+            <p>Realizamos una entrevista y, si es apropiado, visitamos tu hogar para asegurar un buen match.</p>
+          </div>
+        </div>
+        <div class="adoption-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>¡Bienvenido a casa!</h3>
+            <p>Firma el contrato de adopción y lleva a tu nuevo amigo a casa. Te apoyamos en el proceso de adaptación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block body_end %}
   <!-- PET DETAIL MODAL -->
   <div id="petModal" class="pet-modal-overlay" role="dialog" aria-modal="true" style="display:none">
     <div class="pet-modal">
-      <button class="pet-modal-close" onclick="closeModal()" aria-label="Cerrar">&times;</button>
+      <button class="pet-modal-close" id="modalCloseBtn" aria-label="Cerrar">&times;</button>
       <div class="pet-modal-gallery">
         <img id="modalMainImg" class="pet-modal-main-img" src="" alt="" />
         <div id="modalThumbs" class="pet-modal-thumbs"></div>
@@ -195,8 +111,4 @@
       <div id="modalInfo" class="pet-modal-info"></div>
     </div>
   </div>
-
-  <script src="/static/js/main.js"></script>
-</body>
-
-</html>
+{% endblock %}
