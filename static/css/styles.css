@@ -543,7 +543,31 @@ input[type="number"].input { -moz-appearance: textfield; appearance: textfield; 
 .carousel-wrap { position: relative; padding: 0 2rem; }
 .carousel-viewport { overflow: hidden; }
 .carousel-track { display: flex; gap: 1.5rem; }
-.carousel-slide { flex: 0 0 calc(33.333% - 1rem); min-width: 0; }
+.carousel-slide { flex: 0 0 calc(33.333% - 1rem); min-width: 0; display: flex; }
+
+.carousel-slide .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-slide .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-slide .pet-desc {
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.carousel-slide .card-body .btn {
+  margin-top: auto;
+}
 
 .carousel-btn {
   position: absolute;
@@ -593,6 +617,7 @@ input[type="number"].input { -moz-appearance: textfield; appearance: textfield; 
 
 @media (max-width: 640px) {
   .carousel-slide { flex: 0 0 100%; }
+  .carousel-slide .pet-desc { -webkit-line-clamp: 3; }
 }
 
 /* ===================================
@@ -1434,15 +1459,15 @@ input[type="number"].input { -moz-appearance: textfield; appearance: textfield; 
 .pet-modal-main-img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 0.625rem;
   background: var(--gray-100);
 }
 
 .pet-modal-thumbs {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  overflow-x: auto;
   padding-bottom: 0.25rem;
 }
 
@@ -1511,6 +1536,26 @@ input[type="number"].input { -moz-appearance: textfield; appearance: textfield; 
 
 .pet-modal-adopt {
   margin-top: auto;
+}
+
+/* Muchas fotos: apila gallery arriba, texto abajo */
+.pet-modal--stack {
+  grid-template-columns: 1fr;
+  max-width: 640px;
+}
+
+.pet-modal--stack .pet-modal-gallery {
+  padding-bottom: 0.5rem;
+}
+
+.pet-modal--stack .pet-modal-info {
+  padding: 0.5rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.pet-modal--stack .pet-modal-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
 }
 
 @media (max-width: 640px) {

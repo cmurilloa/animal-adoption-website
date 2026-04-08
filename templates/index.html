@@ -53,7 +53,7 @@
     <section class="hero-fullwidth">
       <img
         class="hero-bg-img"
-        src="https://images.unsplash.com/photo-1753685725777-0d1bf5796b3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBodWdnaW5nJTIwZG9nfGVufDF8fHx8MTc3MzM0MDI1Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+        src="/static/images/site/hero-dog.jpg"
         alt="Persona abrazando a un perro, promoviendo la adopción responsable"
       />
       <div class="hero-fw-overlay"></div>
@@ -155,69 +155,7 @@
           <p class="section-subtitle">Ayuda mensualmente a animales que necesitan cuidados especiales mientras esperan su hogar</p>
         </div>
 
-        <div class="grid-3 mb-3">
-
-          <div class="card">
-            <div class="card-img-wrap">
-              <img class="card-img" src="https://images.unsplash.com/photo-1769256130388-9fb59d103671?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGF5ZnVsJTIwY2F0JTIwcmVzY3VlfGVufDF8fHx8MTc3MzM0NTk5MXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Luna" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=Luna'" />
-              <div class="sponsor-card-overlay">
-                <h3>Luna</h3>
-                <p>Gato</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="sponsor-meta">
-                <div class="sponsor-donors">
-                  <i data-lucide="heart" class="icon-sm icon-heart-filled"></i>
-                  <span>12 padrinos</span>
-                </div>
-                <span class="badge badge-blue-light">Tratamiento crónico</span>
-              </div>
-              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino ($40.000 COP/mes)</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-img-wrap">
-              <img class="card-img" src="https://images.unsplash.com/photo-1706745262357-5ecaa3154433?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXRlJTIwcHVwcHklMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzMyNTc1MDl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Rocky" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=Rocky'" />
-              <div class="sponsor-card-overlay">
-                <h3>Rocky</h3>
-                <p>Perro</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="sponsor-meta">
-                <div class="sponsor-donors">
-                  <i data-lucide="heart" class="icon-sm icon-heart-filled"></i>
-                  <span>8 padrinos</span>
-                </div>
-                <span class="badge badge-blue-light">Cuidados especiales</span>
-              </div>
-              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino ($40.000 COP/mes)</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-img-wrap">
-              <img class="card-img" src="https://images.unsplash.com/photo-1651212508936-dfb6f6ea3d81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb2xkZW4lMjByZXRyaWV2ZXIlMjBoYXBweXxlbnwxfHx8fDE3NzMyOTk5OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Buddy" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=Buddy'" />
-              <div class="sponsor-card-overlay">
-                <h3>Buddy</h3>
-                <p>Perro</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="sponsor-meta">
-                <div class="sponsor-donors">
-                  <i data-lucide="heart" class="icon-sm icon-heart-filled"></i>
-                  <span>15 padrinos</span>
-                </div>
-                <span class="badge badge-blue-light">Alimentación especial</span>
-              </div>
-              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino ($40.000 COP/mes)</a>
-            </div>
-          </div>
-
-        </div>
+        <div class="grid-3 mb-3" id="padrinosGrid"></div>
 
         <div class="godparent-box">
           <div>
@@ -339,11 +277,24 @@
       return res.json();
     })
     .then(data => {
-      const nuevos = data.filter(p => p.nuevo && !p.adoptado);
+      const disponibles = data.filter(p => !p.adoptado);
+
+      // Carrusel: mascotas marcadas como nuevas
+      const nuevos = disponibles.filter(p => p.nuevo);
       const track = document.getElementById('carouselTrack');
       track.innerHTML = '';
       nuevos.forEach(pet => track.appendChild(createCarouselSlide(pet)));
       initCarousel();
+
+      // Padrinos: las 3 más viejitas
+      const grid = document.getElementById('padrinosGrid');
+      if (grid) {
+        const padrinos = [...disponibles]
+          .sort((a, b) => b.age_years - a.age_years)
+          .slice(0, 3);
+        padrinos.forEach(pet => grid.appendChild(createSponsorCard(pet)));
+        lucide.createIcons();
+      }
     })
     .catch(() => {
       const track = document.getElementById('carouselTrack');

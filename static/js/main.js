@@ -246,6 +246,61 @@ function createCarouselSlide(pet) {
 }
 
 // ===================================
+//  SPONSOR CARD BUILDER
+// ===================================
+function createSponsorCard(pet) {
+  const ageBadge = pet.age_years >= 7 ? 'Veterano/a' : pet.age_years >= 4 ? 'Adulto/a' : 'Joven';
+
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const imgWrap = document.createElement('div');
+  imgWrap.className = 'card-img-wrap';
+
+  const img = document.createElement('img');
+  img.className = 'card-img';
+  img.src = pet.image;
+  img.alt = pet.name;
+  img.addEventListener('error', () => {
+    img.src = 'https://placehold.co/400x256/e2e8f0/94a3b8?text=' + encodeURIComponent(pet.name);
+  });
+  imgWrap.appendChild(img);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'sponsor-card-overlay';
+  const h3 = document.createElement('h3');
+  h3.textContent = pet.name;
+  const p = document.createElement('p');
+  p.textContent = pet.edad_label;
+  overlay.appendChild(h3);
+  overlay.appendChild(p);
+  imgWrap.appendChild(overlay);
+  card.appendChild(imgWrap);
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+
+  const meta = document.createElement('div');
+  meta.className = 'sponsor-meta';
+  const badge = document.createElement('span');
+  badge.className = 'badge badge-blue-light';
+  badge.textContent = ageBadge;
+  meta.appendChild(badge);
+  cardBody.appendChild(meta);
+
+  const btn = document.createElement('a');
+  btn.href = 'https://checkout.wompi.co/l/VPOS_tYiYny';
+  btn.target = '_blank';
+  btn.rel = 'noopener noreferrer';
+  btn.className = 'btn btn-primary btn-full';
+  btn.textContent = 'Ser Padrino ($40.000 COP/mes)';
+  cardBody.appendChild(btn);
+
+  card.appendChild(cardBody);
+  return card;
+}
+
+// ===================================
 //  PET CARD BUILDER (XSS-safe)
 // ===================================
 function createPetCard(pet) {
@@ -286,7 +341,7 @@ function createPetCard(pet) {
   favBtn.className = 'pet-favorite-btn' + (isFav ? ' liked' : '');
   favBtn.setAttribute('aria-label', 'Guardar en favoritos');
   favBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? '#ef4444' : 'none'}" stroke="${isFav ? '#ef4444' : 'currentColor'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
-  favBtn.addEventListener('click', () => toggleFavorite(favBtn, pet.id));
+  favBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(favBtn, pet.id); });
   petImage.appendChild(favBtn);
 
   if (multi) {
@@ -313,6 +368,9 @@ function createPetCard(pet) {
     });
     petImage.appendChild(dotsDiv);
   }
+
+  petImage.style.cursor = 'pointer';
+  petImage.addEventListener('click', () => openModal(pet.id));
 
   card.appendChild(petImage);
 
@@ -500,6 +558,10 @@ function openModal(id) {
   });
   adoptDiv.appendChild(adoptBtn);
   info.appendChild(adoptDiv);
+
+  // Layout: stack gallery arriba + texto abajo cuando hay más de 4 fotos
+  const modalBox = document.getElementById('petModal').querySelector('.pet-modal');
+  modalBox.classList.toggle('pet-modal--stack', images.length > 4);
 
   document.getElementById('petModal').style.display = 'flex';
   document.body.style.overflow = 'hidden';
