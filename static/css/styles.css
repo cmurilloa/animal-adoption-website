@@ -223,6 +223,9 @@ main { flex: 1; }
 
 .footer-contact { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 .footer-contact li { color: var(--gray-400); font-size: 0.9rem; }
+.footer-social { display: flex; gap: 0.75rem; margin-top: 1rem; }
+.footer-social a { color: var(--gray-400); font-size: 1.25rem; transition: color 0.2s; }
+.footer-social a:hover { color: white; }
 
 .footer-bottom {
   border-top: 1px solid var(--gray-800);
