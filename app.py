@@ -37,8 +37,51 @@ def create_app():
     with app.app_context():
         db.create_all()
         _seed_fiscal_documents()
+        _seed_pets()
 
     return app
+
+
+def _seed_pets():
+    import json
+    import re
+    import unicodedata
+    from pathlib import Path
+    from models import Pet
+
+    if Pet.query.first():
+        return
+
+    from seed import PETS_DATA
+
+    def slugify(name):
+        name = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
+        return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
+
+    images_dir = Path(__file__).parent / "static" / "images" / "mascotas"
+
+    for data in PETS_DATA:
+        slug = slugify(data["name"])
+        img_files = sorted(
+            list(images_dir.glob(f"{slug}_*.jpg")) +
+            list(images_dir.glob(f"{slug}_*.png"))
+        )
+        img_paths = [f"/static/images/mascotas/{f.name}" for f in img_files]
+
+        db.session.add(Pet(
+            name=data["name"],
+            breed=data["breed"],
+            edad_label=data["edad_label"],
+            age_years=data["age_years"],
+            gender=data["gender"],
+            descripcion=data["descripcion"],
+            image=img_paths[0] if img_paths else "",
+            images_json=json.dumps(img_paths),
+            nuevo=data.get("nuevo", False),
+            adoptado=False,
+        ))
+
+    db.session.commit()
 
 
 def _seed_fiscal_documents():
