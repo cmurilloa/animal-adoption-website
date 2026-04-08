@@ -30,7 +30,7 @@
         <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
       </ul>
 
-      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <i data-lucide="menu" class="icon-lg"></i>
       </button>
     </nav>
@@ -54,8 +54,7 @@
       <img
         class="hero-bg-img"
         src="https://images.unsplash.com/photo-1753685725777-0d1bf5796b3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBodWdnaW5nJTIwZG9nfGVufDF8fHx8MTc3MzM0MDI1Mnww&ixlib=rb-4.1.0&q=80&w=1080"
-        alt=""
-        onerror="this.src='https://placehold.co/1280x580/093825/0f5438?text=Animal+Libre'"
+        alt="Persona abrazando a un perro, promoviendo la adopción responsable"
       />
       <div class="hero-fw-overlay"></div>
       <div class="hero-fw-inner">
@@ -174,7 +173,7 @@
                 </div>
                 <span class="badge badge-blue-light">Tratamiento crónico</span>
               </div>
-              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino (€10/mes)</a>
+              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino ($40.000 COP/mes)</a>
             </div>
           </div>
 
@@ -194,7 +193,7 @@
                 </div>
                 <span class="badge badge-blue-light">Cuidados especiales</span>
               </div>
-              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino (€10/mes)</a>
+              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino ($40.000 COP/mes)</a>
             </div>
           </div>
 
@@ -214,7 +213,7 @@
                 </div>
                 <span class="badge badge-blue-light">Alimentación especial</span>
               </div>
-              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino (€10/mes)</a>
+              <a href="/como-ayudar" class="btn btn-primary btn-full">Ser Padrino ($40.000 COP/mes)</a>
             </div>
           </div>
 
@@ -335,31 +334,20 @@
 <script src="/static/js/main.js"></script>
 <script>
   fetch('/api/pets')
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('Error al cargar datos');
+      return res.json();
+    })
     .then(data => {
       const nuevos = data.filter(p => p.nuevo && !p.adoptado);
       const track = document.getElementById('carouselTrack');
-
-      track.innerHTML = nuevos.map(pet => `
-        <div class="carousel-slide">
-          <div class="card">
-            <div class="card-img-wrap">
-              <img class="card-img" src="${pet.image}" alt="${pet.name}" onerror="this.src='https://placehold.co/400x256/e2e8f0/94a3b8?text=${pet.name}'" />
-              <span class="badge badge-green card-badge-tr">¡Nuevo!</span>
-            </div>
-            <div class="card-header">
-              <div class="card-title">${pet.name}</div>
-              <div class="card-desc">${pet.edad_label}</div>
-            </div>
-            <div class="card-body">
-              <p class="pet-desc">${pet.descripcion}</p>
-              <a href="/adopciones" class="btn btn-primary btn-full">Conocer Más</a>
-            </div>
-          </div>
-        </div>
-      `).join('');
-
+      track.innerHTML = '';
+      nuevos.forEach(pet => track.appendChild(createCarouselSlide(pet)));
       initCarousel();
+    })
+    .catch(() => {
+      const track = document.getElementById('carouselTrack');
+      if (track) track.innerHTML = '<p style="padding:2rem;text-align:center;color:#6b7280;">Error al cargar animales. Intenta de nuevo más tarde.</p>';
     });
 </script>
 </body>

@@ -26,7 +26,7 @@
         <li><a href="/contacto" class="active">Contacto</a></li>
         <li><a href="/como-ayudar" class="btn-donate">Donar</a></li>
       </ul>
-      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <i data-lucide="menu" class="icon-lg"></i>
       </button>
     </nav>
@@ -86,33 +86,34 @@
           <div class="contact-form-card">
             <h2>Envíanos un Mensaje</h2>
             <p>Completa el formulario y nos pondremos en contacto contigo pronto</p>
-            <form id="contactForm" onsubmit="submitForm(event)">
+            <form id="contactForm" action="/api/contact" method="post">
               <div class="form-row">
                 <div class="form-group">
                   <label class="label" for="firstName">Nombre</label>
-                  <input class="input" id="firstName" type="text" placeholder="Tu nombre" required />
+                  <input class="input" id="firstName" name="firstName" type="text" placeholder="Tu nombre" required />
                 </div>
                 <div class="form-group">
                   <label class="label" for="lastName">Apellido</label>
-                  <input class="input" id="lastName" type="text" placeholder="Tu apellido" required />
+                  <input class="input" id="lastName" name="lastName" type="text" placeholder="Tu apellido" required />
                 </div>
               </div>
               <div class="form-group">
                 <label class="label" for="email">Email</label>
-                <input class="input" id="email" type="email" placeholder="tu@email.com" required />
+                <input class="input" id="email" name="email" type="email" placeholder="tu@email.com" required />
               </div>
               <div class="form-group">
                 <label class="label" for="phone">Teléfono (opcional)</label>
-                <input class="input" id="phone" type="tel" placeholder="+1 (631) 764-7313" />
+                <input class="input" id="phone" name="phone" type="tel" placeholder="+57 300 000 0000" pattern="[0-9+\s]{7,15}" />
               </div>
               <div class="form-group">
                 <label class="label" for="subject">Asunto</label>
-                <input class="input" id="subject" type="text" placeholder="¿Sobre qué quieres hablar?" required />
+                <input class="input" id="subject" name="subject" type="text" placeholder="¿Sobre qué quieres hablar?" required />
               </div>
               <div class="form-group">
                 <label class="label" for="message">Mensaje</label>
-                <textarea class="input" id="message" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <textarea class="input" id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
               </div>
+              <p id="contactFormMsg" role="status" aria-live="polite" style="min-height:1.5rem;font-size:0.95rem;margin-bottom:0.5rem;"></p>
               <button type="submit" class="btn btn-orange-gradient btn-full">
                 <i data-lucide="send" class="icon-xs"></i>
                 Enviar Mensaje
@@ -188,6 +189,7 @@
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d31729.484888366733!2d-75.6091692!3d6.2392506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sco!4v1772142961700!5m2!1ses!2sco"
           width="100%" height="450" class="map-iframe"
+          title="Ubicación de Animal Libre en Santa Elena, Antioquia"
           loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
@@ -234,13 +236,5 @@
 </div>
 
 <script src="/static/js/main.js"></script>
-<script>
-  function submitForm(e) {
-    e.preventDefault();
-    const name = document.getElementById('firstName').value;
-    alert(`¡Gracias, ${name}! Hemos recibido tu mensaje y te contactaremos pronto.`);
-    e.target.reset();
-  }
-</script>
 </body>
 </html>

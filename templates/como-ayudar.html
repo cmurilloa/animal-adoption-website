@@ -28,7 +28,7 @@
         <li><a href="/blog">Blog</a></li>
         <li><a href="https://checkout.wompi.co/l/VPOS_tYiYny" target="_blank" class="btn-donate">Donar</a></li>
       </ul>
-      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú">
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
         <i data-lucide="menu" class="icon-lg"></i>
       </button>
     </nav>
@@ -60,15 +60,15 @@
 
         <!-- Tab Buttons -->
         <div class="tabs" role="tablist">
-          <button class="tab-btn active" data-tab="donar" role="tab">
+          <button class="tab-btn active" data-tab="donar" role="tab" aria-selected="true" aria-controls="tab-donar" id="tab-btn-donar">
             <i data-lucide="dollar-sign" class="icon-md"></i>
             Donar
           </button>
-          <button class="tab-btn" data-tab="voluntariado" role="tab">
+          <button class="tab-btn" data-tab="voluntariado" role="tab" aria-selected="false" aria-controls="tab-voluntariado" id="tab-btn-voluntariado">
             <i data-lucide="heart" class="icon-md"></i>
             Voluntariado
           </button>
-          <button class="tab-btn" data-tab="suministros" role="tab">
+          <button class="tab-btn" data-tab="suministros" role="tab" aria-selected="false" aria-controls="tab-suministros" id="tab-btn-suministros">
             <i data-lucide="package" class="icon-md"></i>
             Suministros
           </button>
@@ -85,22 +85,22 @@
             <div class="donation-option-card">
               <div class="donation-option-amount">$10.000</div>
               <div class="donation-option-desc">Alimenta a un animal durante 3 días</div>
-              <button class="btn btn-orange btn-full" onclick="alert('¡Gracias por tu donación de $10.000!')">Donar</button>
+              <button class="btn btn-orange btn-full" aria-label="Donar $10.000">Donar</button>
             </div>
             <div class="donation-option-card">
               <div class="donation-option-amount">$50.000</div>
               <div class="donation-option-desc">Cubre vacunas para un cachorro</div>
-              <button class="btn btn-orange btn-full" onclick="alert('¡Gracias por tu donación de $50.000!')">Donar</button>
+              <button class="btn btn-orange btn-full" aria-label="Donar $50.000">Donar</button>
             </div>
             <div class="donation-option-card">
               <div class="donation-option-amount">$150.000</div>
               <div class="donation-option-desc">Esterilización de una mascota</div>
-              <button class="btn btn-orange btn-full" onclick="alert('¡Gracias por tu donación de $150.000!')">Donar</button>
+              <button class="btn btn-orange btn-full" aria-label="Donar $150.000">Donar</button>
             </div>
             <div class="donation-option-card">
               <div class="donation-option-amount">$400.000</div>
               <div class="donation-option-desc">Tratamiento veterinario completo</div>
-              <button class="btn btn-orange btn-full" onclick="alert('¡Gracias por tu donación de $400.000!')">Donar</button>
+              <button class="btn btn-orange btn-full" aria-label="Donar $400.000">Donar</button>
             </div>
           </div>
 
@@ -108,8 +108,9 @@
             <h3>Donación Personalizada</h3>
             <p>¿Quieres donar otra cantidad? Elige el monto que prefieras.</p>
             <div class="custom-donation-input-row">
-              <input type="number" class="input" id="customAmount" placeholder="Ingresa cantidad" min="1" />
-              <button class="btn btn-orange-gradient" onclick="donateCustom()">Donar Ahora</button>
+              <label for="customAmount" class="sr-only">Monto de donación en pesos colombianos</label>
+              <input type="number" class="input" id="customAmount" name="customAmount" placeholder="Ingresa cantidad" min="1" />
+              <button class="btn btn-orange-gradient" id="btnDonarCustom">Donar Ahora</button>
             </div>
           </div>
 
@@ -117,11 +118,11 @@
             <h3>Donación Recurrente</h3>
             <p>Conviértete en un padrino mensual y proporciona apoyo constante a nuestros animales. Las donaciones recurrentes nos permiten planificar mejor y garantizar el cuidado continuo.</p>
             <div class="recurring-amounts">
-              <button class="btn btn-outline-orange" onclick="alert('Configurando donación mensual de $10.000...')">$10.000/mes</button>
-              <button class="btn btn-outline-orange" onclick="alert('Configurando donación mensual de $25.000...')">$25.000/mes</button>
-              <button class="btn btn-outline-orange" onclick="alert('Configurando donación mensual de $50.000...')">$50.000/mes</button>
-              <button class="btn btn-outline-orange" onclick="alert('Configurando donación mensual de $100.000...')">$100.000/mes</button>
-              <button class="btn btn-orange" onclick="alert('Redirigiendo a configuración de donación mensual...')">Configurar Donación Mensual</button>
+              <button class="btn btn-outline-orange" aria-label="Donar $10.000 mensuales">$10.000/mes</button>
+              <button class="btn btn-outline-orange" aria-label="Donar $25.000 mensuales">$25.000/mes</button>
+              <button class="btn btn-outline-orange" aria-label="Donar $50.000 mensuales">$50.000/mes</button>
+              <button class="btn btn-outline-orange" aria-label="Donar $100.000 mensuales">$100.000/mes</button>
+              <button class="btn btn-orange">Configurar Donación Mensual</button>
             </div>
           </div>
 
@@ -150,7 +151,7 @@
               </div>
               <div class="volunteer-card-footer">
                 <span class="volunteer-time"><strong>Compromiso:</strong> 4-8 horas/semana</span>
-                <button class="btn btn-outline-orange btn-sm" onclick="alert('Gracias por tu interés en ser Cuidador de Animales. Te contactaremos pronto.')">Aplicar</button>
+                <button class="btn btn-outline-orange btn-sm">Aplicar</button>
               </div>
             </div>
 
@@ -166,7 +167,7 @@
               </div>
               <div class="volunteer-card-footer">
                 <span class="volunteer-time"><strong>Compromiso:</strong> Temporal o permanente</span>
-                <button class="btn btn-outline-orange btn-sm" onclick="alert('Gracias por tu interés en ser Casa de Acogida. Te contactaremos pronto.')">Aplicar</button>
+                <button class="btn btn-outline-orange btn-sm">Aplicar</button>
               </div>
             </div>
 
@@ -182,7 +183,7 @@
               </div>
               <div class="volunteer-card-footer">
                 <span class="volunteer-time"><strong>Compromiso:</strong> Fines de semana</span>
-                <button class="btn btn-outline-orange btn-sm" onclick="alert('Gracias por tu interés en Eventos y Recaudación. Te contactaremos pronto.')">Aplicar</button>
+                <button class="btn btn-outline-orange btn-sm">Aplicar</button>
               </div>
             </div>
 
@@ -198,7 +199,7 @@
               </div>
               <div class="volunteer-card-footer">
                 <span class="volunteer-time"><strong>Compromiso:</strong> Flexible</span>
-                <button class="btn btn-outline-orange btn-sm" onclick="alert('Gracias por tu interés en Apoyo Administrativo. Te contactaremos pronto.')">Aplicar</button>
+                <button class="btn btn-outline-orange btn-sm">Aplicar</button>
               </div>
             </div>
           </div>
@@ -212,7 +213,7 @@
               <li><span class="req-bullet">•</span><span>Confiabilidad y puntualidad</span></li>
               <li><span class="req-bullet">•</span><span>Actitud positiva y habilidades de trabajo en equipo</span></li>
             </ul>
-            <button class="btn btn-purple mt-1-5" onclick="alert('Redirigiendo al formulario de voluntariado...')">Llenar Formulario de Voluntariado</button>
+            <button class="btn btn-purple mt-1-5" id="btnFormVoluntariado">Llenar Formulario de Voluntariado</button>
           </div>
         </div>
 
@@ -255,19 +256,19 @@
                   <p>Lunes a Viernes: 9:00 - 18:00</p>
                   <p>Sábados: 10:00 - 14:00</p>
                 </div>
-                <button class="btn btn-orange btn-full mt-1" onclick="alert('Abriendo Google Maps...')">Ver en Mapa</button>
+                <button class="btn btn-orange btn-full mt-1" id="btnVerMapa">Ver en Mapa</button>
               </div>
 
               <div class="wishlist-box">
                 <h3>Lista de Deseos de Amazon</h3>
                 <p>¿Prefieres comprar online? Visita nuestra lista de deseos en Amazon y envía artículos directamente a nuestro refugio.</p>
-                <button class="btn btn-outline-pink btn-full" onclick="alert('Redirigiendo a Amazon Wishlist...')">Ver Lista en Amazon</button>
+                <button class="btn btn-outline-pink btn-full" id="btnAmazonWishlist">Ver Lista en Amazon</button>
               </div>
 
               <div class="vehicle-box">
                 <h3>Donación de Vehículo</h3>
                 <p>¿Tienes un vehículo que ya no usas? Dónalo y ayúdanos con el transporte de animales.</p>
-                <button class="btn btn-outline-blue btn-full" onclick="alert('Contacta con nosotros para más información sobre donación de vehículos.')">Más Información</button>
+                <button class="btn btn-outline-blue btn-full" id="btnDonacionVehiculo">Más Información</button>
               </div>
             </div>
           </div>
@@ -339,12 +340,5 @@
 </div>
 
 <script src="/static/js/main.js"></script>
-<script>
-  function donateCustom() {
-    const amount = document.getElementById('customAmount').value;
-    if (!amount || amount <= 0) { alert('Por favor ingresa una cantidad válida.'); return; }
-    alert(`¡Gracias por tu donación de $${amount}!`);
-  }
-</script>
 </body>
 </html>

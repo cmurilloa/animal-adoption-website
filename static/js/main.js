@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initAdopciones();
   initFormulario();
+  initComoAyudar();
 });
 
 // ===================================
@@ -24,6 +25,7 @@ function initMobileMenu() {
   btn.addEventListener('click', () => {
     isOpen = !isOpen;
     nav.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     // Swap icon
     btn.innerHTML = isOpen
       ? '<i data-lucide="x" style="width:24px;height:24px;"></i>'
@@ -171,6 +173,175 @@ function initCarousel() {
 }
 
 // ===================================
+//  TOAST NOTIFICATION
+// ===================================
+function showToast(message) {
+  let toast = document.getElementById('toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast-notification';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;background:#093825;color:white;padding:1rem 1.5rem;border-radius:0.75rem;font-size:0.95rem;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:opacity 0.3s;max-width:320px;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.style.opacity = '1';
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 3500);
+}
+
+// ===================================
+//  CAROUSEL SLIDE BUILDER
+// ===================================
+function createCarouselSlide(pet) {
+  const slide = document.createElement('div');
+  slide.className = 'carousel-slide';
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const imgWrap = document.createElement('div');
+  imgWrap.className = 'card-img-wrap';
+  const img = document.createElement('img');
+  img.className = 'card-img';
+  img.src = pet.image;
+  img.alt = pet.name;
+  img.addEventListener('error', () => {
+    img.src = 'https://placehold.co/400x256/e2e8f0/94a3b8?text=' + encodeURIComponent(pet.name);
+  });
+  imgWrap.appendChild(img);
+  const newBadge = document.createElement('span');
+  newBadge.className = 'badge badge-green card-badge-tr';
+  newBadge.textContent = '¡Nuevo!';
+  imgWrap.appendChild(newBadge);
+  card.appendChild(imgWrap);
+
+  const cardHeader = document.createElement('div');
+  cardHeader.className = 'card-header';
+  const cardTitle = document.createElement('div');
+  cardTitle.className = 'card-title';
+  cardTitle.textContent = pet.name;
+  const cardDesc = document.createElement('div');
+  cardDesc.className = 'card-desc';
+  cardDesc.textContent = pet.edad_label;
+  cardHeader.appendChild(cardTitle);
+  cardHeader.appendChild(cardDesc);
+  card.appendChild(cardHeader);
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  const p = document.createElement('p');
+  p.className = 'pet-desc';
+  p.textContent = pet.descripcion;
+  cardBody.appendChild(p);
+  const link = document.createElement('a');
+  link.href = '/adopciones';
+  link.className = 'btn btn-primary btn-full';
+  link.textContent = 'Conocer Más';
+  cardBody.appendChild(link);
+  card.appendChild(cardBody);
+
+  slide.appendChild(card);
+  return slide;
+}
+
+// ===================================
+//  PET CARD BUILDER (XSS-safe)
+// ===================================
+function createPetCard(pet) {
+  const imgs = (pet.images && pet.images.length > 0) ? pet.images : [pet.image];
+  const multi = imgs.length > 1;
+
+  const card = document.createElement('div');
+  card.className = 'pet-card';
+  card.dataset.petId = pet.id;
+  card.dataset.imgIndex = '0';
+  card.dataset.imgs = JSON.stringify(imgs);
+
+  const petImage = document.createElement('div');
+  petImage.className = 'pet-image';
+
+  const img = document.createElement('img');
+  img.src = imgs[0];
+  img.alt = pet.name;
+  img.addEventListener('error', () => {
+    img.src = 'https://placehold.co/400x220/f0f7f3/093825?text=' + encodeURIComponent(pet.name);
+  });
+  petImage.appendChild(img);
+
+  const badge = document.createElement('span');
+  badge.className = 'pet-badge';
+  badge.textContent = '🐾 ' + (pet.breed || '');
+  petImage.appendChild(badge);
+
+  if (pet.nuevo) {
+    const newBadge = document.createElement('span');
+    newBadge.className = 'pet-age-badge';
+    newBadge.textContent = '¡Nuevo!';
+    petImage.appendChild(newBadge);
+  }
+
+  const isFav = likedPets.has(pet.id);
+  const favBtn = document.createElement('button');
+  favBtn.className = 'pet-favorite-btn' + (isFav ? ' liked' : '');
+  favBtn.setAttribute('aria-label', 'Guardar en favoritos');
+  favBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? '#ef4444' : 'none'}" stroke="${isFav ? '#ef4444' : 'currentColor'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+  favBtn.addEventListener('click', () => toggleFavorite(favBtn, pet.id));
+  petImage.appendChild(favBtn);
+
+  if (multi) {
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'pet-slide-btn pet-slide-prev';
+    prevBtn.setAttribute('aria-label', 'Foto anterior');
+    prevBtn.textContent = '‹';
+    prevBtn.addEventListener('click', (e) => slideCard(e, pet.id, -1));
+    petImage.appendChild(prevBtn);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'pet-slide-btn pet-slide-next';
+    nextBtn.setAttribute('aria-label', 'Foto siguiente');
+    nextBtn.textContent = '›';
+    nextBtn.addEventListener('click', (e) => slideCard(e, pet.id, 1));
+    petImage.appendChild(nextBtn);
+
+    const dotsDiv = document.createElement('div');
+    dotsDiv.className = 'pet-slide-dots';
+    imgs.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'pet-slide-dot' + (i === 0 ? ' active' : '');
+      dotsDiv.appendChild(dot);
+    });
+    petImage.appendChild(dotsDiv);
+  }
+
+  card.appendChild(petImage);
+
+  const petInfo = document.createElement('div');
+  petInfo.className = 'pet-info';
+
+  const h3 = document.createElement('h3');
+  h3.textContent = pet.name + ' · ' + (pet.gender || '') + ' · ' + pet.edad_label;
+  petInfo.appendChild(h3);
+
+  const tagline = document.createElement('p');
+  tagline.className = 'pet-tagline';
+  pet.descripcion.split('\n').forEach((line, i) => {
+    if (i > 0) tagline.appendChild(document.createElement('br'));
+    tagline.appendChild(document.createTextNode(line));
+  });
+  petInfo.appendChild(tagline);
+
+  const adoptBtn = document.createElement('button');
+  adoptBtn.className = 'btn-adopt';
+  adoptBtn.textContent = 'Conóceme';
+  adoptBtn.addEventListener('click', () => openModal(pet.id));
+  petInfo.appendChild(adoptBtn);
+
+  card.appendChild(petInfo);
+  return card;
+}
+
+// ===================================
 //  ADOPCIONES PAGE
 // ===================================
 let allPets = [];
@@ -191,33 +362,8 @@ function renderPets(list) {
   noResults.style.display = 'none';
   count.textContent = `Mostrando ${list.length} ${list.length === 1 ? 'animal' : 'animales'}`;
 
-  grid.innerHTML = list.map(pet => {
-    const imgs = (pet.images && pet.images.length > 0) ? pet.images : [pet.image];
-    const multi = imgs.length > 1;
-    return `
-    <div class="pet-card" data-pet-id="${pet.id}" data-img-index="0" data-imgs='${JSON.stringify(imgs)}'>
-      <div class="pet-image">
-        <img src="${imgs[0]}" alt="${pet.name}" onerror="this.src='https://placehold.co/400x220/f0f7f3/093825?text=${pet.name}'" />
-        <span class="pet-badge">🐾 ${pet.breed || ''}</span>
-        ${pet.nuevo ? '<span class="pet-age-badge">¡Nuevo!</span>' : ''}
-        <button class="pet-favorite-btn${likedPets.has(pet.id) ? ' liked' : ''}" onclick="toggleFavorite(this, ${pet.id})" aria-label="Guardar en favoritos">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="${likedPets.has(pet.id) ? '#ef4444' : 'none'}" stroke="${likedPets.has(pet.id) ? '#ef4444' : 'currentColor'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
-        </button>
-        ${multi ? `
-        <button class="pet-slide-btn pet-slide-prev" onclick="slideCard(event, ${pet.id}, -1)" aria-label="Foto anterior">&#8249;</button>
-        <button class="pet-slide-btn pet-slide-next" onclick="slideCard(event, ${pet.id}, 1)" aria-label="Foto siguiente">&#8250;</button>
-        <div class="pet-slide-dots">${imgs.map((_, i) => `<span class="pet-slide-dot${i === 0 ? ' active' : ''}"></span>`).join('')}</div>
-        ` : ''}
-      </div>
-      <div class="pet-info">
-        <h3>${pet.name} · ${pet.gender || ''} · ${pet.edad_label}</h3>
-        <p class="pet-tagline">${pet.descripcion.replace(/\n/g, '<br>')}</p>
-        <button class="btn-adopt" onclick="openModal(${pet.id})">Conóceme</button>
-      </div>
-    </div>
-  `}).join('');
+  grid.innerHTML = '';
+  list.forEach(pet => grid.appendChild(createPetCard(pet)));
 }
 
 function slideCard(e, petId, dir) {
@@ -296,32 +442,64 @@ function openModal(id) {
   mainImg.src = images[0];
   mainImg.alt = pet.name;
 
-  thumbsContainer.innerHTML = images.map((src, i) => `
-    <img
-      src="${src}"
-      alt="${pet.name} foto ${i + 1}"
-      class="pet-modal-thumb${i === 0 ? ' active' : ''}"
-      onclick="selectThumb(this, '${src}')"
-      onerror="this.src='https://placehold.co/72x72/e2e8f0/64748b?text=📷'"
-    />
-  `).join('');
+  thumbsContainer.innerHTML = '';
+  images.forEach((src, i) => {
+    const thumb = document.createElement('img');
+    thumb.src = src;
+    thumb.alt = pet.name + ' foto ' + (i + 1);
+    thumb.className = 'pet-modal-thumb' + (i === 0 ? ' active' : '');
+    thumb.addEventListener('error', () => { thumb.src = 'https://placehold.co/72x72/e2e8f0/64748b?text=📷'; });
+    thumb.addEventListener('click', () => selectThumb(thumb, src));
+    thumbsContainer.appendChild(thumb);
+  });
 
-  info.innerHTML = `
-    <div class="pet-modal-badges">
-      <span class="pet-badge" style="position:static;display:inline-block">🐾 ${pet.breed || ''}</span>
-      ${pet.nuevo ? '<span class="pet-age-badge" style="position:static;display:inline-block">¡Nuevo!</span>' : ''}
-    </div>
-    <div>
-      <h2 class="pet-modal-title">${pet.name}</h2>
-      <p class="pet-modal-subtitle">${pet.gender || ''} · ${pet.edad_label}</p>
-    </div>
-    <p class="pet-modal-desc">${pet.descripcion.replace(/\n/g, '<br>')}</p>
-    <div class="pet-modal-adopt">
-      <button class="btn-adopt" onclick="window.location.href='/formulario-de-adopcion?pet=${pet.id}'">
-        Iniciar adopción
-      </button>
-    </div>
-  `;
+  info.innerHTML = '';
+
+  const badgesDiv = document.createElement('div');
+  badgesDiv.className = 'pet-modal-badges';
+  const breedBadge = document.createElement('span');
+  breedBadge.className = 'pet-badge';
+  breedBadge.style.cssText = 'position:static;display:inline-block';
+  breedBadge.textContent = '🐾 ' + (pet.breed || '');
+  badgesDiv.appendChild(breedBadge);
+  if (pet.nuevo) {
+    const newBadge = document.createElement('span');
+    newBadge.className = 'pet-age-badge';
+    newBadge.style.cssText = 'position:static;display:inline-block';
+    newBadge.textContent = '¡Nuevo!';
+    badgesDiv.appendChild(newBadge);
+  }
+  info.appendChild(badgesDiv);
+
+  const nameDiv = document.createElement('div');
+  const h2 = document.createElement('h2');
+  h2.className = 'pet-modal-title';
+  h2.textContent = pet.name;
+  const subtitle = document.createElement('p');
+  subtitle.className = 'pet-modal-subtitle';
+  subtitle.textContent = (pet.gender || '') + ' · ' + pet.edad_label;
+  nameDiv.appendChild(h2);
+  nameDiv.appendChild(subtitle);
+  info.appendChild(nameDiv);
+
+  const descEl = document.createElement('p');
+  descEl.className = 'pet-modal-desc';
+  pet.descripcion.split('\n').forEach((line, i) => {
+    if (i > 0) descEl.appendChild(document.createElement('br'));
+    descEl.appendChild(document.createTextNode(line));
+  });
+  info.appendChild(descEl);
+
+  const adoptDiv = document.createElement('div');
+  adoptDiv.className = 'pet-modal-adopt';
+  const adoptBtn = document.createElement('button');
+  adoptBtn.className = 'btn-adopt';
+  adoptBtn.textContent = 'Iniciar adopción';
+  adoptBtn.addEventListener('click', () => {
+    window.location.href = '/formulario-de-adopcion?pet=' + pet.id;
+  });
+  adoptDiv.appendChild(adoptBtn);
+  info.appendChild(adoptDiv);
 
   document.getElementById('petModal').style.display = 'flex';
   document.body.style.overflow = 'hidden';
@@ -374,7 +552,10 @@ function initAdopciones() {
   });
 
   fetch('/api/pets')
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('Error al cargar mascotas');
+      return res.json();
+    })
     .then(data => {
       allPets = data.filter(p => !p.adoptado);
 
@@ -432,7 +613,10 @@ function initFormulario() {
   if (!select) return;
 
   fetch('/api/pets')
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error('Error al cargar mascotas');
+      return r.json();
+    })
     .then(pets => {
       const available = pets.filter(p => !p.adoptado);
 
@@ -626,12 +810,25 @@ function initFormulario() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Error');
+          return res.json();
+        })
         .then(() => {
           e.target.reset();
-          alert('¡Mensaje enviado! Te contactaremos pronto.');
+          const msg = document.getElementById('contactFormMsg');
+          if (msg) {
+            msg.textContent = '¡Mensaje enviado! Te contactaremos pronto.';
+            msg.className = 'form-success-msg';
+          }
         })
-        .catch(() => alert('Hubo un error al enviar. Intenta de nuevo.'));
+        .catch(() => {
+          const msg = document.getElementById('contactFormMsg');
+          if (msg) {
+            msg.textContent = 'Hubo un error al enviar. Intenta de nuevo.';
+            msg.className = 'form-error-msg';
+          }
+        });
     });
 
     contactForm.addEventListener('input', function (e) {
@@ -714,8 +911,12 @@ function initTabs() {
       const target = btn.dataset.tab;
 
       // Update buttons
-      tabBtns.forEach(b => b.classList.remove('active'));
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       // Update panels
       tabPanels.forEach(panel => {
@@ -725,4 +926,76 @@ function initTabs() {
       lucide.createIcons();
     });
   });
+}
+
+// ===================================
+//  COMO AYUDAR PAGE
+// ===================================
+function initComoAyudar() {
+  // Fixed donation buttons → Wompi
+  document.querySelectorAll('.donation-option-card .btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.location.href = 'https://checkout.wompi.co/l/VPOS_tYiYny';
+    });
+  });
+
+  // Custom donation
+  const btnCustom = document.getElementById('btnDonarCustom');
+  if (btnCustom) {
+    btnCustom.addEventListener('click', () => {
+      const input = document.getElementById('customAmount');
+      const raw = input ? parseInt(input.value, 10) : NaN;
+      if (!raw || isNaN(raw) || raw <= 0) {
+        showToast('Por favor ingresa una cantidad válida.');
+        return;
+      }
+      window.location.href = 'https://checkout.wompi.co/l/VPOS_tYiYny';
+    });
+  }
+
+  // Recurring amount buttons and "Configurar" → Wompi
+  document.querySelectorAll('.recurring-amounts .btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.location.href = 'https://checkout.wompi.co/l/VPOS_tYiYny';
+    });
+  });
+
+  // Volunteer "Aplicar" buttons → contact
+  document.querySelectorAll('.volunteer-card .btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.location.href = '/contacto';
+    });
+  });
+
+  // Fill volunteer form → contact
+  const btnFormVol = document.getElementById('btnFormVoluntariado');
+  if (btnFormVol) {
+    btnFormVol.addEventListener('click', () => {
+      window.location.href = '/contacto';
+    });
+  }
+
+  // Ver en Mapa
+  const btnMapa = document.getElementById('btnVerMapa');
+  if (btnMapa) {
+    btnMapa.addEventListener('click', () => {
+      window.open('https://maps.google.com/?q=Calle+7+34Aeste-82+Santa+Elena+Antioquia', '_blank');
+    });
+  }
+
+  // Amazon Wishlist
+  const btnAmazon = document.getElementById('btnAmazonWishlist');
+  if (btnAmazon) {
+    btnAmazon.addEventListener('click', () => {
+      showToast('Lista de Amazon próximamente disponible. Contáctanos para más información.');
+    });
+  }
+
+  // Donación de vehículo
+  const btnVehiculo = document.getElementById('btnDonacionVehiculo');
+  if (btnVehiculo) {
+    btnVehiculo.addEventListener('click', () => {
+      window.location.href = '/contacto';
+    });
+  }
 }
